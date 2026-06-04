@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-03T00:00:00.000Z",
+  "updatedAt": "2026-06-04T05:09:56.557Z",
   "note": "Estimated points before automated collection are carried over from data/history.json. New scraper runs append or replace dated points here.",
   "runs": [
     {
@@ -17,7 +17,7 @@
       "trumpApproval": {
         "average": {
           "approve": 50.5,
-          "disapprove": 44.0,
+          "disapprove": 44,
           "net": 6.5
         },
         "sources": []
@@ -38,7 +38,7 @@
       "trumpApproval": {
         "average": {
           "approve": 48.2,
-          "disapprove": 47.0,
+          "disapprove": 47,
           "net": 1.2
         },
         "sources": []
@@ -60,7 +60,7 @@
         "average": {
           "approve": 46.5,
           "disapprove": 50.5,
-          "net": -4.0
+          "net": -4
         },
         "sources": []
       }
@@ -71,7 +71,7 @@
       "estimated": true,
       "genericBallot": {
         "average": {
-          "democrats": 45.0,
+          "democrats": 45,
           "republicans": 43.5,
           "margin": 1.5
         },
@@ -93,7 +93,7 @@
       "genericBallot": {
         "average": {
           "democrats": 45.3,
-          "republicans": 43.0,
+          "republicans": 43,
           "margin": 2.3
         },
         "sources": []
@@ -121,9 +121,9 @@
       },
       "trumpApproval": {
         "average": {
-          "approve": 45.0,
-          "disapprove": 53.0,
-          "net": -8.0
+          "approve": 45,
+          "disapprove": 53,
+          "net": -8
         },
         "sources": []
       }
@@ -136,7 +136,7 @@
         "average": {
           "democrats": 45.8,
           "republicans": 42.8,
-          "margin": 3.0
+          "margin": 3
         },
         "sources": []
       },
@@ -144,7 +144,7 @@
         "average": {
           "approve": 44.5,
           "disapprove": 52.5,
-          "net": -8.0
+          "net": -8
         },
         "sources": []
       }
@@ -157,7 +157,7 @@
         "average": {
           "democrats": 45.5,
           "republicans": 42.5,
-          "margin": 3.0
+          "margin": 3
         },
         "sources": []
       },
@@ -184,7 +184,7 @@
       },
       "trumpApproval": {
         "average": {
-          "approve": 44.0,
+          "approve": 44,
           "disapprove": 54.2,
           "net": -10.2
         },
@@ -207,7 +207,7 @@
         "average": {
           "approve": 42.5,
           "disapprove": 55.5,
-          "net": -13.0
+          "net": -13
         },
         "sources": []
       }
@@ -219,14 +219,14 @@
       "genericBallot": {
         "average": {
           "democrats": 46.8,
-          "republicans": 42.0,
+          "republicans": 42,
           "margin": 4.8
         },
         "sources": []
       },
       "trumpApproval": {
         "average": {
-          "approve": 42.0,
+          "approve": 42,
           "disapprove": 54.8,
           "net": -12.8
         },
@@ -239,7 +239,7 @@
       "estimated": true,
       "genericBallot": {
         "average": {
-          "democrats": 47.0,
+          "democrats": 47,
           "republicans": 41.9,
           "margin": 5.1
         },
@@ -248,7 +248,7 @@
       "trumpApproval": {
         "average": {
           "approve": 41.8,
-          "disapprove": 55.0,
+          "disapprove": 55,
           "net": -13.2
         },
         "sources": []
@@ -269,7 +269,7 @@
       "trumpApproval": {
         "average": {
           "approve": 41.2,
-          "disapprove": 56.0,
+          "disapprove": 56,
           "net": -14.8
         },
         "sources": []
@@ -323,7 +323,7 @@
       "estimated": true,
       "genericBallot": {
         "average": {
-          "democrats": 48.0,
+          "democrats": 48,
           "republicans": 41.7,
           "margin": 6.3
         },
@@ -351,7 +351,7 @@
         "sources": [
           {
             "key": "votehub",
-            "democrats": 49.0,
+            "democrats": 49,
             "republicans": 42.3,
             "status": "fallback"
           },
@@ -363,8 +363,8 @@
           },
           {
             "key": "cnn",
-            "democrats": 47.0,
-            "republicans": 49.0,
+            "democrats": 47,
+            "republicans": 49,
             "status": "fallback"
           },
           {
@@ -408,8 +408,8 @@
           },
           {
             "key": "cnn",
-            "approve": 36.0,
-            "disapprove": 63.0,
+            "approve": 36,
+            "disapprove": 63,
             "status": "fallback"
           },
           {
@@ -426,9 +426,104 @@
           },
           {
             "key": "nyt",
-            "approve": 38.0,
-            "disapprove": 58.0,
+            "approve": 38,
+            "disapprove": 58,
             "status": "fallback"
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-06-04",
+      "timestamp": "2026-06-04T05:09:56.557Z",
+      "estimated": false,
+      "genericBallot": {
+        "average": {
+          "democrats": 47.6,
+          "republicans": 42.4,
+          "margin": 5.2
+        },
+        "sources": [
+          {
+            "key": "votehub",
+            "democrats": 49,
+            "republicans": 42.4,
+            "status": "live"
+          },
+          {
+            "key": "silver",
+            "democrats": 48.6,
+            "republicans": 41.8,
+            "status": "live"
+          },
+          {
+            "key": "cnn",
+            "democrats": 47,
+            "republicans": 49,
+            "status": "live"
+          },
+          {
+            "key": "racetowh",
+            "democrats": 48.1,
+            "republicans": 41.2,
+            "status": "fallback"
+          },
+          {
+            "key": "ddhq",
+            "democrats": 45.3,
+            "republicans": 37.8,
+            "status": "fallback"
+          },
+          {
+            "key": "nyt",
+            "democrats": null,
+            "republicans": null,
+            "status": "not_applicable"
+          }
+        ]
+      },
+      "trumpApproval": {
+        "average": {
+          "approve": 38.1,
+          "disapprove": 58.5,
+          "net": -20.4
+        },
+        "sources": [
+          {
+            "key": "votehub",
+            "approve": 39.5,
+            "disapprove": 57.3,
+            "status": "live"
+          },
+          {
+            "key": "silver",
+            "approve": 38.6,
+            "disapprove": 57.7,
+            "status": "live"
+          },
+          {
+            "key": "cnn",
+            "approve": 36,
+            "disapprove": 63,
+            "status": "live"
+          },
+          {
+            "key": "racetowh",
+            "approve": 37.7,
+            "disapprove": 58.2,
+            "status": "live"
+          },
+          {
+            "key": "ddhq",
+            "approve": 38.9,
+            "disapprove": 56.8,
+            "status": "fallback"
+          },
+          {
+            "key": "nyt",
+            "approve": 38,
+            "disapprove": 58,
+            "status": "live"
           }
         ]
       }
