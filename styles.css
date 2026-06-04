@@ -3595,3 +3595,145 @@ body:has(.about-layout) .contact-strip.container {
   fill: rgba(217, 224, 230, 0.82);
   font-size: 14px;
 }
+
+
+/* 0.7.6: final homepage major-card layout + remove small blue headings */
+.eyebrow,
+.section-label {
+  display: none !important;
+}
+
+.card.metric-card.major-card {
+  container-type: inline-size;
+}
+
+.major-card .metric-number-row,
+.major-card .generic-number-row,
+.major-card .approval-number-row {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(150px, 230px) minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: clamp(16px, 2vw, 38px) !important;
+}
+
+.major-card .metric-number-row > .number-item,
+.major-card .generic-number-row > .number-item,
+.major-card .approval-number-row > .number-item {
+  min-width: 0 !important;
+  width: 100% !important;
+}
+
+.major-card .metric-number-row > .number-item:first-child,
+.major-card .generic-number-row > .number-item:first-child,
+.major-card .approval-number-row > .number-item:first-child {
+  justify-self: start !important;
+  text-align: left !important;
+  order: 1;
+}
+
+.major-card .metric-number-row > .trend-chip,
+.major-card .generic-number-row > .trend-chip,
+.major-card .approval-number-row > .trend-chip {
+  position: static !important;
+  transform: none !important;
+  justify-self: center !important;
+  align-self: center !important;
+  width: min(100%, 230px) !important;
+  max-width: 230px !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  order: 2;
+  padding: clamp(18px, 1.8vw, 28px) !important;
+}
+
+.major-card .metric-number-row > .number-item:last-child,
+.major-card .generic-number-row > .number-item:last-child,
+.major-card .approval-number-row > .number-item:last-child {
+  justify-self: end !important;
+  text-align: right !important;
+  order: 3;
+}
+
+.major-card .number-item strong {
+  display: block !important;
+  max-width: 100% !important;
+  font-size: clamp(3.1rem, 4.4vw, 6.6rem) !important;
+  line-height: 0.9 !important;
+  white-space: nowrap !important;
+}
+
+.major-card .trend-chip .trend-change {
+  white-space: nowrap !important;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Stack inside the card only when the card itself gets too narrow. */
+@container (max-width: 720px) {
+  .major-card .metric-number-row,
+  .major-card .generic-number-row,
+  .major-card .approval-number-row {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .major-card .metric-number-row > .number-item,
+  .major-card .generic-number-row > .number-item,
+  .major-card .approval-number-row > .number-item {
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    align-items: baseline !important;
+    justify-self: stretch !important;
+    text-align: left !important;
+  }
+
+  .major-card .metric-number-row > .number-item:first-child,
+  .major-card .generic-number-row > .number-item:first-child,
+  .major-card .approval-number-row > .number-item:first-child {
+    order: 1;
+  }
+
+  .major-card .metric-number-row > .trend-chip,
+  .major-card .generic-number-row > .trend-chip,
+  .major-card .approval-number-row > .trend-chip {
+    order: 2;
+    width: min(100%, 270px) !important;
+    max-width: 270px !important;
+    margin: 0 auto !important;
+  }
+
+  .major-card .metric-number-row > .number-item:last-child,
+  .major-card .generic-number-row > .number-item:last-child,
+  .major-card .approval-number-row > .number-item:last-child {
+    order: 3;
+    justify-self: stretch !important;
+    text-align: left !important;
+  }
+}
+
+/* Fallback for browsers/layouts where container queries do not apply. */
+@media (max-width: 1180px) {
+  .major-card .metric-number-row,
+  .major-card .generic-number-row,
+  .major-card .approval-number-row {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .major-card .metric-number-row > .number-item,
+  .major-card .generic-number-row > .number-item,
+  .major-card .approval-number-row > .number-item {
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    align-items: baseline !important;
+    justify-self: stretch !important;
+    text-align: left !important;
+  }
+
+  .major-card .metric-number-row > .trend-chip,
+  .major-card .generic-number-row > .trend-chip,
+  .major-card .approval-number-row > .trend-chip {
+    width: min(100%, 270px) !important;
+    max-width: 270px !important;
+    margin: 0 auto !important;
+  }
+}

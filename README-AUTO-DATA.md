@@ -196,3 +196,20 @@ Fix:
 - The marker is labeled `Live data begins` and shows the date.
 - The default hover panel text now explains that the dotted line marks when live data collection began.
 - This makes the jump from estimated starter history to live scraper data understandable.
+
+
+## Version 0.7.6
+
+Changed files:
+- `index.html`
+- `national-averages.html`
+- `trump-approval.html`
+- `methodology.html`
+- `styles.css`
+- `package.json`
+- `README-AUTO-DATA.md`
+
+Fixes:
+- Restored the homepage major-card large-screen layout so the trend chip sits between the two large numbers again.
+- The cards only stack internally when the card itself gets too narrow.
+- Removed the small blue headings/badges from all HTML pages again and kept a CSS fallback hiding `.eyebrow` and `.section-label`.
