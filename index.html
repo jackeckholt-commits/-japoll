@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>National Poll Tracker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="container">
+        <nav class="top-nav">
+  <a href="index.html" class="logo">National Poll Tracker</a>
+  <div class="nav-links">
+    <a href="methodology.html">About the Project</a>
+    <a href="national-averages.html">National Averages</a>
+    <a href="trump-approval.html">Trump Approval</a>
+          <a href="methodology.html#contact">Contact</a>
+          
+  </div>
+</nav>
+
+        <section class="hero">
+          <p class="eyebrow">National Poll Tracker</p>
+          <h1>The State of the Race</h1>
+          <p class="intro">
+            An average of averages built to give a clearer picture of the national political landscape.
+          </p>
+        </section>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="dashboard-grid">
+        <a class="card metric-card major-card generic-ballot clickable-card" href="national-averages.html">
+          <span class="section-label">Generic Ballot</span>
+          <h3>Generic Congressional Ballot</h3>
+
+          <div class="metric-number-row generic-number-row">
+            <div class="number-item">
+              <span>Democrats</span>
+              <strong class="dem-number" data-generic-dem>47.1%</strong>
+            </div>
+
+            <div class="trend-chip trend-chip-blue" aria-label="Generic ballot margin change since last week">
+              <span class="trend-kicker" data-weekly-label="generic-margin">D margin</span>
+              <div class="trend-arrow-row">
+                <span class="trend-arrow" aria-hidden="true">↗</span>
+                <strong class="trend-change" data-weekly-change="generic-margin">N/A</strong>
+              </div>
+              <p class="trend-caption" data-weekly-caption="generic-margin">Change since last week</p>
+            </div>
+
+            <div class="number-item">
+              <span>Republicans</span>
+              <strong class="rep-number" data-generic-rep>42.7%</strong>
+            </div>
+          </div>
+
+          <p class="algorithm-note" data-generic-adjustment>Algorithm adjustment: D+1.6 — change since last week.</p>
+        </a>
+
+        <a class="card metric-card major-card approval-card clickable-card" href="trump-approval.html">
+          <span class="section-label">Trump Approval</span>
+          <h3>Trump Approval Rating</h3>
+
+          <div class="approval-number-row">
+            <div class="number-item">
+              <span>Approve</span>
+              <strong class="approve-number" data-trump-approve>38.5%</strong>
+            </div>
+
+            <div class="trend-chip trend-chip-red" aria-label="Approval up 0.8 points since last week">
+              <span class="trend-kicker" data-weekly-label="approval-net">Net approval</span>
+              <div class="trend-arrow-row">
+                <span class="trend-arrow" aria-hidden="true">↗</span>
+                <strong class="trend-change" data-weekly-change="approval-net">N/A</strong>
+              </div>
+              <p class="trend-caption" data-weekly-caption="approval-net">Change since last week</p>
+            </div>
+
+            <div class="number-item">
+              <span>Disapprove</span>
+              <strong class="disapprove-number" data-trump-disapprove>58.3%</strong>
+            </div>
+          </div>
+        </a>
+<a class="card methodology clickable-card" href="methodology.html">
+          <span class="section-label">About the Project</span>
+          <h3>About the Project</h3>
+          <p>
+            This tracker compares polling averages from multiple sources while keeping the calculation simple and transparent.
+          </p>
+        </a>
+
+        <article class="card progress-card">
+          <span class="section-label">Senate</span>
+          <h3>Senate Races</h3>
+          <p class="status">Work in progress</p>
+          <p>Senate race polling and race-level information will be added later.</p>
+        </article>
+
+        <article class="card progress-card gubernatorial-card">
+          <span class="section-label">Gubernatorial</span>
+          <h3>Gubernatorial Races</h3>
+          <p class="status">Work in progress</p>
+          <p>Gubernatorial polling and state-level information will be added later.</p>
+        </article>
+
+        <article class="card progress-card">
+          <span class="section-label">House</span>
+          <h3>House Races</h3>
+          <p class="status">Work in progress</p>
+          <p>House race polling and national House indicators will be added later.</p>
+        </article>
+      </section>
+    </main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>National Poll Tracker</p>
+    <p>State of the Race</p>
+  </div>
+</footer>
+  </div>
+  <script src="js/load-polling-data.js"></script>
+</body>
+</html>

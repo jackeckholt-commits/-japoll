@@ -1,0 +1,167 @@
+{
+  "note": "Estimated historical trend points for prototype charts. Current/latest point is added from data/polling.json by js/trend-charts.js.",
+  "genericBallot": [
+    {
+      "date": "2025-02-01",
+      "democrats": 43.2,
+      "republicans": 43.8
+    },
+    {
+      "date": "2025-03-01",
+      "democrats": 44.1,
+      "republicans": 44.5
+    },
+    {
+      "date": "2025-04-01",
+      "democrats": 44.4,
+      "republicans": 44.2
+    },
+    {
+      "date": "2025-05-01",
+      "democrats": 45.0,
+      "republicans": 43.5
+    },
+    {
+      "date": "2025-06-01",
+      "democrats": 45.3,
+      "republicans": 43.0
+    },
+    {
+      "date": "2025-07-01",
+      "democrats": 45.2,
+      "republicans": 42.7
+    },
+    {
+      "date": "2025-08-01",
+      "democrats": 45.8,
+      "republicans": 42.8
+    },
+    {
+      "date": "2025-09-01",
+      "democrats": 45.5,
+      "republicans": 42.5
+    },
+    {
+      "date": "2025-10-01",
+      "democrats": 45.7,
+      "republicans": 42.2
+    },
+    {
+      "date": "2025-11-01",
+      "democrats": 46.6,
+      "republicans": 42.1
+    },
+    {
+      "date": "2025-12-01",
+      "democrats": 46.8,
+      "republicans": 42.0
+    },
+    {
+      "date": "2026-01-01",
+      "democrats": 47.0,
+      "republicans": 41.9
+    },
+    {
+      "date": "2026-02-01",
+      "democrats": 47.4,
+      "republicans": 42.2
+    },
+    {
+      "date": "2026-03-01",
+      "democrats": 47.6,
+      "republicans": 42.1
+    },
+    {
+      "date": "2026-04-01",
+      "democrats": 47.7,
+      "republicans": 41.9
+    },
+    {
+      "date": "2026-05-01",
+      "democrats": 48.0,
+      "republicans": 41.7
+    }
+  ],
+  "trumpApproval": [
+    {
+      "date": "2025-02-01",
+      "approve": 50.5,
+      "disapprove": 44.0
+    },
+    {
+      "date": "2025-03-01",
+      "approve": 48.2,
+      "disapprove": 47.0
+    },
+    {
+      "date": "2025-04-01",
+      "approve": 46.5,
+      "disapprove": 50.5
+    },
+    {
+      "date": "2025-05-01",
+      "approve": 44.8,
+      "disapprove": 52.2
+    },
+    {
+      "date": "2025-06-01",
+      "approve": 45.2,
+      "disapprove": 51.5
+    },
+    {
+      "date": "2025-07-01",
+      "approve": 45.0,
+      "disapprove": 53.0
+    },
+    {
+      "date": "2025-08-01",
+      "approve": 44.5,
+      "disapprove": 52.5
+    },
+    {
+      "date": "2025-09-01",
+      "approve": 44.2,
+      "disapprove": 53.1
+    },
+    {
+      "date": "2025-10-01",
+      "approve": 44.0,
+      "disapprove": 54.2
+    },
+    {
+      "date": "2025-11-01",
+      "approve": 42.5,
+      "disapprove": 55.5
+    },
+    {
+      "date": "2025-12-01",
+      "approve": 42.0,
+      "disapprove": 54.8
+    },
+    {
+      "date": "2026-01-01",
+      "approve": 41.8,
+      "disapprove": 55.0
+    },
+    {
+      "date": "2026-02-01",
+      "approve": 41.2,
+      "disapprove": 56.0
+    },
+    {
+      "date": "2026-03-01",
+      "approve": 40.5,
+      "disapprove": 56.2
+    },
+    {
+      "date": "2026-04-01",
+      "approve": 39.4,
+      "disapprove": 57.3
+    },
+    {
+      "date": "2026-05-01",
+      "approve": 38.6,
+      "disapprove": 57.7
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trump Approval | National Poll Tracker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="page-header">
+      <div class="container">
+        <nav class="top-nav">
+  <a href="index.html" class="logo">National Poll Tracker</a>
+  <div class="nav-links">
+    <a href="methodology.html">About the Project</a>
+    <a href="national-averages.html">National Averages</a>
+    <a href="trump-approval.html">Trump Approval</a>
+          <a href="methodology.html#contact">Contact</a>
+          
+  </div>
+</nav>
+
+        <section class="hero">
+          <p class="eyebrow">Trump Approval</p>
+          <h1>Trump Approval Average</h1>
+          <p class="intro">
+            A comparison page for Trump approval averages from major polling aggregators.
+          </p>
+        </section>
+      </div>
+    </header>
+
+    <main class="container page-content">
+      <section class="average-summary approval-summary-card">
+        <div class="summary-copy">
+          <span class="section-label">Current combined average</span>
+          <h2>Trump Approval Rating</h2>
+          <p>
+            Equal-weight average of The New York Times, Silver Bulletin, CNN, VoteHub,
+            Race to WH, and Decision Desk HQ.
+          </p>
+        </div>
+
+        <div class="number-row summary-numbers">
+          <div class="number-item boxed approve-box">
+            <span>Approve</span>
+            <strong class="approve-number" data-trump-approve>38.8%</strong>
+          </div>
+          <div class="number-item boxed disapprove-box">
+            <span>Disapprove</span>
+            <strong class="disapprove-number" data-trump-disapprove>55.3%</strong>
+          </div>
+        </div>
+      </section>
+      <section class="graph-card page-graph">
+        <div class="graph-copy graph-copy-centered">
+          <span class="section-label">Approval trend</span>
+        </div>
+
+        <div class="trend-chart-wrap" data-trend-chart="approval"></div>
+      </section>
+
+<section class="source-grid">
+        <a class="source-card source-link-card" href="https://www.nytimes.com/interactive/polls/donald-trump-approval-rating-polls.html" target="_blank" rel="noopener noreferrer">
+          <h2>The New York Times</h2>
+          <p class="status">Included</p>
+          <div class="source-numbers">
+            <span class="result-row approve-row">Approve: <strong class="mini-number approve-number" data-approval-source="nyt" data-field="approve">38.0%</strong></span>
+            <span class="result-row disapprove-row">Disapprove: <strong class="mini-number disapprove-number" data-approval-source="nyt" data-field="disapprove">58.0%</strong></span>
+            <span class="result-row gap-row">Gap: <strong class="mini-number" data-approval-source="nyt" data-field="gap">20.0 points</strong></span>
+          </div>
+        </a>
+
+        <a class="source-card source-link-card" href="https://www.natesilver.net/p/trump-approval-ratings-nate-silver-bulletin" target="_blank" rel="noopener noreferrer">
+          <h2>Silver Bulletin</h2>
+          <p class="status">Included</p>
+          <div class="source-numbers">
+            <span class="result-row approve-row">Approve: <strong class="mini-number approve-number" data-approval-source="silver" data-field="approve">38.6%</strong></span>
+            <span class="result-row disapprove-row">Disapprove: <strong class="mini-number disapprove-number" data-approval-source="silver" data-field="disapprove">57.7%</strong></span>
+            <span class="result-row gap-row">Gap: <strong class="mini-number" data-approval-source="silver" data-field="gap">19.1 points</strong></span>
+          </div>
+        </a>
+
+        <a class="source-card source-link-card" href="https://www.cnn.com/polling/approval/trump-cnn-poll-of-polls" target="_blank" rel="noopener noreferrer">
+          <h2>CNN</h2>
+          <p class="status">Included</p>
+          <div class="source-numbers">
+            <span class="result-row approve-row">Approve: <strong class="mini-number approve-number" data-approval-source="cnn" data-field="approve">36.0%</strong></span>
+            <span class="result-row disapprove-row">Disapprove: <strong class="mini-number disapprove-number" data-approval-source="cnn" data-field="disapprove">63.0%</strong></span>
+            <span class="result-row gap-row">Gap: <strong class="mini-number" data-approval-source="cnn" data-field="gap">27.0 points</strong></span>
+          </div>
+        </a>
+
+        <a class="source-card source-link-card" href="https://www.votehubpolling.com/polls/approval/donald-trump/approval-rating" target="_blank" rel="noopener noreferrer">
+          <h2>VoteHub</h2>
+          <p class="status">Included</p>
+          <div class="source-numbers">
+            <span class="result-row approve-row">Approve: <strong class="mini-number approve-number" data-approval-source="votehub" data-field="approve">40.3%</strong></span>
+            <span class="result-row disapprove-row">Disapprove: <strong class="mini-number disapprove-number" data-approval-source="votehub" data-field="disapprove">57.0%</strong></span>
+            <span class="result-row gap-row">Gap: <strong class="mini-number" data-approval-source="votehub" data-field="gap">16.7 points</strong></span>
+          </div>
+        </a>
+
+        <a class="source-card source-link-card" href="https://www.racetothewh.com/trump" target="_blank" rel="noopener noreferrer">
+          <h2>Race to WH</h2>
+          <p class="status">Included</p>
+          <div class="source-numbers">
+            <span class="result-row approve-row">Approve: <strong class="mini-number approve-number" data-approval-source="racetowh" data-field="approve">37.7%</strong></span>
+            <span class="result-row disapprove-row">Disapprove: <strong class="mini-number disapprove-number" data-approval-source="racetowh" data-field="disapprove">57.9%</strong></span>
+            <span class="result-row gap-row">Gap: <strong class="mini-number" data-approval-source="racetowh" data-field="gap">20.2 points</strong></span>
+          </div>
+        </a>
+
+        <a class="source-card source-link-card" href="https://polls.decisiondeskhq.com/averages/presidential-approval/donald-trump-150479/national/lv-rv-adults" target="_blank" rel="noopener noreferrer">
+          <h2>Decision Desk HQ</h2>
+          <p class="status">Included</p>
+          <div class="source-numbers">
+            <span class="result-row approve-row">Approve: <strong class="mini-number approve-number" data-approval-source="ddhq" data-field="approve">40.3%</strong></span>
+            <span class="result-row disapprove-row">Disapprove: <strong class="mini-number disapprove-number" data-approval-source="ddhq" data-field="disapprove">56.2%</strong></span>
+            <span class="result-row gap-row">Gap: <strong class="mini-number" data-approval-source="ddhq" data-field="gap">15.9 points</strong></span>
+          </div>
+        </a>
+      </section>
+    </main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>National Poll Tracker</p>
+    <p>State of the Race</p>
+  </div>
+</footer>
+  </div>
+  <script src="js/load-polling-data.js"></script>
+  <script src="js/trend-charts.js"></script>
+</body>
+</html>

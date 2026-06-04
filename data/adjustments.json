@@ -1,0 +1,8 @@
+{
+  "genericBallot": {
+    "enabled": true,
+    "party": "D",
+    "points": 1.6,
+    "description": "This applies a D+1.6 adjustment using my algorithm. It only affects the displayed generic ballot average and generic ballot trend graph, not the raw source-card values."
+  }
+}

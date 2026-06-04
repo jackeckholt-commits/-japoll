@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>National Averages | National Poll Tracker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="page-header">
+      <div class="container">
+        <nav class="top-nav">
+  <a href="index.html" class="logo">National Poll Tracker</a>
+  <div class="nav-links">
+    <a href="methodology.html">About the Project</a>
+    <a href="national-averages.html">National Averages</a>
+    <a href="trump-approval.html">Trump Approval</a>
+          <a href="methodology.html#contact">Contact</a>
+          
+  </div>
+</nav>
+
+        <section class="hero">
+          <p class="eyebrow">National Averages</p>
+          <h1>Average of Averages</h1>
+          <p class="intro">
+            A comparison page for national generic ballot averages from major polling aggregators.
+          </p>
+        </section>
+      </div>
+    </header>
+
+    <main class="container page-content">
+      <section class="average-summary generic-summary-card">
+        <div class="summary-copy">
+          <span class="section-label">Current combined average</span>
+          <h2>Generic Congressional Ballot</h2>
+          <p>
+            Equal-weight average of VoteHub, Silver Bulletin, CNN, Race to WH, and Decision Desk HQ.
+            The New York Times is shown below but is not included because no usable average is available.
+          </p>
+          <p class="algorithm-note" data-generic-adjustment>Algorithm adjustment: D+1.6 — change since last week.</p>
+        </div>
+
+        <div class="number-row summary-numbers">
+          <div class="number-item boxed dem-box">
+            <span>Democrats</span>
+            <strong class="dem-number" data-generic-dem>48.7%</strong>
+          </div>
+          <div class="number-item boxed rep-box">
+            <span>Republicans</span>
+            <strong class="rep-number" data-generic-rep>42.7%</strong>
+          </div>
+        </div>
+      </section>
+      <section class="graph-card page-graph">
+        <div class="graph-copy graph-copy-centered">
+          <span class="section-label">Generic ballot trend</span>
+        </div>
+
+        <div class="trend-chart-wrap" data-trend-chart="generic"></div>
+      </section>
+
+<section class="source-grid">
+        <a class="source-card source-link-card" href="https://www.votehubpolling.com/polls/state-of-the-union/generic-congressional-vote" target="_blank" rel="noopener noreferrer">
+          <h2>VoteHub</h2>
+          <p class="status">Included</p>
+          <div class="source-numbers">
+            <span class="result-row dem-row">Democrats: <strong class="mini-number dem-number" data-generic-source="votehub" data-field="democrats">48.3%</strong></span>
+            <span class="result-row rep-row">Republicans: <strong class="mini-number rep-number" data-generic-source="votehub" data-field="republicans">41.5%</strong></span>
+            <span class="result-row margin-row">Margin: <strong class="mini-number" data-generic-source="votehub" data-field="margin">6.8 points</strong></span>
+          </div>
+        </a>
+
+        <a class="source-card source-link-card" href="https://www.natesilver.net/p/generic-ballot-average-2026-nate-silver-bulletin-congress-polls" target="_blank" rel="noopener noreferrer">
+          <h2>Silver Bulletin</h2>
+          <p class="status">Included</p>
+          <div class="source-numbers">
+            <span class="result-row dem-row">Democrats: <strong class="mini-number dem-number" data-generic-source="silver" data-field="democrats">48.6%</strong></span>
+            <span class="result-row rep-row">Republicans: <strong class="mini-number rep-number" data-generic-source="silver" data-field="republicans">41.8%</strong></span>
+            <span class="result-row margin-row">Margin: <strong class="mini-number" data-generic-source="silver" data-field="margin">6.8 points</strong></span>
+          </div>
+        </a>
+
+        <a class="source-card source-link-card" href="https://www.cnn.com/polling/generic-ballot-poll-of-polls" target="_blank" rel="noopener noreferrer">
+          <h2>CNN</h2>
+          <p class="status">Included</p>
+          <div class="source-numbers">
+            <span class="result-row dem-row">Democrats: <strong class="mini-number dem-number" data-generic-source="cnn" data-field="democrats">47.0%</strong></span>
+            <span class="result-row rep-row">Republicans: <strong class="mini-number rep-number" data-generic-source="cnn" data-field="republicans">49.0%</strong></span>
+            <span class="result-row margin-row">Margin: <strong class="mini-number" data-generic-source="cnn" data-field="margin">2.0 points</strong></span>
+          </div>
+        </a>
+
+        <a class="source-card source-link-card" href="https://www.racetothewh.com/polls/genericballot" target="_blank" rel="noopener noreferrer">
+          <h2>Race to WH</h2>
+          <p class="status">Included</p>
+          <div class="source-numbers">
+            <span class="result-row dem-row">Democrats: <strong class="mini-number dem-number" data-generic-source="racetowh" data-field="democrats">48.1%</strong></span>
+            <span class="result-row rep-row">Republicans: <strong class="mini-number rep-number" data-generic-source="racetowh" data-field="republicans">40.7%</strong></span>
+            <span class="result-row margin-row">Margin: <strong class="mini-number" data-generic-source="racetowh" data-field="margin">7.4 points</strong></span>
+          </div>
+        </a>
+
+        <a class="source-card source-link-card" href="https://polls.decisiondeskhq.com/averages/generic-ballot/national/lv-rv-adults" target="_blank" rel="noopener noreferrer">
+          <h2>Decision Desk HQ</h2>
+          <p class="status">Included</p>
+          <div class="source-numbers">
+            <span class="result-row dem-row">Democrats: <strong class="mini-number dem-number" data-generic-source="ddhq" data-field="democrats">43.7%</strong></span>
+            <span class="result-row rep-row">Republicans: <strong class="mini-number rep-number" data-generic-source="ddhq" data-field="republicans">40.3%</strong></span>
+            <span class="result-row margin-row">Margin: <strong class="mini-number" data-generic-source="ddhq" data-field="margin">3.4 points</strong></span>
+          </div>
+        </a>
+
+        <a class="source-card source-link-card unavailable" href="https://www.nytimes.com/interactive/2026/us/elections/polls.html" target="_blank" rel="noopener noreferrer">
+          <h2>The New York Times</h2>
+          <p class="status unavailable-status">Not included</p>
+          <div class="source-numbers">
+            <span class="result-row unavailable-row">No national generic ballot average available</span>
+            <span class="result-row dem-row">Democrats: N/A</span>
+            <span class="result-row rep-row">Republicans: N/A</span>
+          </div>
+        </a>
+      </section>
+    </main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>National Poll Tracker</p>
+    <p>State of the Race</p>
+  </div>
+</footer>
+  </div>
+  <script src="js/load-polling-data.js"></script>
+  <script src="js/trend-charts.js"></script>
+</body>
+</html>
