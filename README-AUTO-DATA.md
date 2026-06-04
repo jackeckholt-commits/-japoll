@@ -925,3 +925,16 @@ DDHQ table-order parser:
   - Approve
 - This handles DDHQ tables where the value cells are present but the candidate labels are not easy to associate in the rendered HTML.
 - The GitHub Actions workflow now uploads `data/scrape-debug/` as an artifact named `scrape-debug`, so if DDHQ fails again we can inspect the exact HTML/text GitHub saw.
+
+
+## Version 0.6.8
+
+DDHQ direct DOM extraction:
+- Browser candidates now evaluate the rendered DOM directly and write:
+  - DOM text
+  - DOM rows
+  - DOM cells
+  - DOM HTML
+- Static DDHQ candidates now include raw static HTML, not only stripped text.
+- DDHQ extraction now tries line-by-line row parsing first.
+- This targets rows/cells visible in DevTools even when labels and values are split across table-cell elements.

@@ -1,6 +1,7 @@
 import fs from "fs/promises";
 
-import { browserSnapshot, getTextFromUrl } from "../lib/fetch-page.js";
+import { chromium } from "playwright";
+import { browserSnapshot, fetchPage, getTextFromUrl, pageText } from "../lib/fetch-page.js";
 import { mergeWithFallback, validateScrapedPair } from "../lib/extract.js";
 
 const source = {
@@ -436,6 +437,160 @@ function extractApprovalFromTableOrder(text) {
   };
 }
 
+
+function getPercentFromLine(line) {
+  const match = String(line || "").match(/([+-]?\d{1,2}(?:\.\d+)?)\s*%/);
+  if (!match) return null;
+
+  const value = Number(match[1]);
+  return Number.isFinite(value) && value >= 20 && value <= 80 ? value : null;
+}
+
+function extractGenericFromLineRows(text) {
+  const lines = String(text || "")
+    .split(/\r?\n/)
+    .map(line => line.replace(/\s+/g, " ").trim())
+    .filter(Boolean);
+
+  let democrats = null;
+  let republicans = null;
+
+  for (const line of lines) {
+    const lower = line.toLowerCase();
+
+    if (democrats === null && /\bdemocrat(?:ic|s)?\b/i.test(line)) {
+      democrats = getPercentFromLine(line);
+    }
+
+    if (republicans === null && /\brepublicans?\b/i.test(line)) {
+      republicans = getPercentFromLine(line);
+    }
+  }
+
+  return {
+    democrats,
+    republicans
+  };
+}
+
+function extractApprovalFromLineRows(text) {
+  const lines = String(text || "")
+    .split(/\r?\n/)
+    .map(line => line.replace(/\s+/g, " ").trim())
+    .filter(Boolean);
+
+  let approve = null;
+  let disapprove = null;
+
+  for (const line of lines) {
+    const lower = line.toLowerCase();
+
+    if (disapprove === null && /\bdisapprove\b/i.test(line)) {
+      disapprove = getPercentFromLine(line);
+    }
+
+    // Do not let "Disapprove" satisfy "Approve".
+    if (approve === null && /\bapprove\b/i.test(line) && !/\bdisapprove\b/i.test(line)) {
+      approve = getPercentFromLine(line);
+    }
+  }
+
+  return {
+    approve,
+    disapprove
+  };
+}
+
+async function browserDomSnapshot(url, options = {}) {
+  const timeout = options.timeout ?? 35000;
+  const browser = await chromium.launch({ headless: true });
+
+  try {
+    const contextOptions = {
+      userAgent:
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 " +
+        "(KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      viewport: { width: 1440, height: 1000 }
+    };
+
+    if (options.cookie) {
+      const parsedCookies = options.cookie
+        .split(";")
+        .map(pair => {
+          const [name, ...rest] = pair.trim().split("=");
+
+          return {
+            name,
+            value: rest.join("="),
+            domain: new URL(url).hostname,
+            path: "/"
+          };
+        })
+        .filter(cookie => cookie.name && cookie.value);
+
+      contextOptions.storageState = {
+        cookies: parsedCookies,
+        origins: []
+      };
+    }
+
+    const context = await browser.newContext(contextOptions);
+    const page = await context.newPage();
+
+    page.setDefaultTimeout(timeout);
+    page.setDefaultNavigationTimeout(timeout);
+
+    await page.goto(url, {
+      waitUntil: "domcontentloaded",
+      timeout
+    });
+
+    await page.waitForTimeout(options.waitAfterLoad ?? 12000);
+    await page.waitForSelector("table, tr, td, [data-slot='table-row']", { timeout: 15000 }).catch(() => null);
+
+    const data = await page.evaluate(() => {
+      const clean = value => String(value || "").replace(/\s+/g, " ").trim();
+
+      const rows = Array.from(document.querySelectorAll("tr, [data-slot='table-row']"))
+        .map(row => {
+          const cells = Array.from(row.querySelectorAll("th, td, [data-slot='table-cell']"))
+            .map(cell => clean(cell.innerText || cell.textContent))
+            .filter(Boolean);
+
+          return cells.join(" | ");
+        })
+        .filter(Boolean);
+
+      const cells = Array.from(document.querySelectorAll("th, td, [data-slot='table-cell'], div[class*='text-right'], div"))
+        .map(cell => clean(cell.innerText || cell.textContent))
+        .filter(text => /(\d{1,2}(?:\.\d+)?\s*%|Democrat|Republican|Approve|Disapprove)/i.test(text))
+        .slice(0, 1500);
+
+      return {
+        text: clean(document.body ? document.body.innerText : ""),
+        rows,
+        cells,
+        html: document.documentElement ? document.documentElement.outerHTML : ""
+      };
+    });
+
+    await context.close();
+
+    return [
+      "=== DOM TEXT ===",
+      data.text,
+      "=== DOM ROWS ===",
+      data.rows.join("\n"),
+      "=== DOM CELLS ===",
+      data.cells.join("\n"),
+      "=== DOM HTML ===",
+      data.html
+    ].join("\n");
+  } finally {
+    await browser.close();
+  }
+}
+
 async function writeDebugFile(name, text) {
   try {
     await fs.mkdir("data/scrape-debug", { recursive: true });
@@ -497,6 +652,12 @@ function findCandidateValue(blob, candidateLabels) {
 }
 
 function extractGenericFromText(text) {
+  const lineRows = extractGenericFromLineRows(text);
+
+  if (lineRows.democrats !== null && lineRows.republicans !== null) {
+    return lineRows;
+  }
+
   const htmlRows = extractGenericFromHtmlRows(text);
 
   if (htmlRows.democrats !== null && htmlRows.republicans !== null) {
@@ -509,7 +670,7 @@ function extractGenericFromText(text) {
     return embeddedRows;
   }
 
-  const tableOrder = extractGenericFromTableOrder(text);
+  const tableOrder = typeof extractGenericFromTableOrder === "function" ? extractGenericFromTableOrder(text) : { democrats: null, republicans: null };
 
   if (tableOrder.democrats !== null && tableOrder.republicans !== null) {
     return tableOrder;
@@ -533,6 +694,12 @@ function extractGenericFromText(text) {
 }
 
 function extractApprovalFromText(text) {
+  const lineRows = extractApprovalFromLineRows(text);
+
+  if (lineRows.approve !== null && lineRows.disapprove !== null) {
+    return lineRows;
+  }
+
   const htmlRows = extractApprovalFromHtmlRows(text);
 
   if (htmlRows.approve !== null && htmlRows.disapprove !== null) {
@@ -545,7 +712,7 @@ function extractApprovalFromText(text) {
     return embeddedRows;
   }
 
-  const tableOrder = extractApprovalFromTableOrder(text);
+  const tableOrder = typeof extractApprovalFromTableOrder === "function" ? extractApprovalFromTableOrder(text) : { approve: null, disapprove: null };
 
   if (tableOrder.approve !== null && tableOrder.disapprove !== null) {
     return tableOrder;
@@ -570,19 +737,42 @@ function extractApprovalFromText(text) {
 
 async function readCandidate(candidate, debugName, waitForText = []) {
   if (candidate.method === "static") {
-    const text = await getTextFromUrl(candidate.url, {
-      cookie: process.env[source.cookieEnv],
-      preferBrowser: false,
-      timeout: 35000
-    });
+    try {
+      const html = await fetchPage(candidate.url, {
+        cookie: process.env[source.cookieEnv],
+        timeout: 35000
+      });
 
-    return [
-      `=== ${candidate.label} ===`,
-      `URL: ${candidate.url}`,
-      "=== STATIC TEXT ===",
-      text
-    ].join("\n");
+      return [
+        `=== ${candidate.label} ===`,
+        `URL: ${candidate.url}`,
+        "=== STATIC TEXT ===",
+        pageText(html),
+        "=== STATIC HTML ===",
+        html
+      ].join("\n");
+    } catch (error) {
+      const text = await getTextFromUrl(candidate.url, {
+        cookie: process.env[source.cookieEnv],
+        preferBrowser: false,
+        timeout: 35000
+      });
+
+      return [
+        `=== ${candidate.label} ===`,
+        `URL: ${candidate.url}`,
+        `STATIC HTML fetch failed: ${error.message}`,
+        "=== STATIC TEXT ===",
+        text
+      ].join("\n");
+    }
   }
+
+  const domText = await browserDomSnapshot(candidate.url, {
+    cookie: process.env[source.cookieEnv],
+    waitAfterLoad: 12000,
+    timeout: 45000
+  });
 
   const snapshot = await browserSnapshot(candidate.url, {
     cookie: process.env[source.cookieEnv],
@@ -590,18 +780,24 @@ async function readCandidate(candidate, debugName, waitForText = []) {
     waitForText,
     waitForTextTimeout: 15000,
     timeout: 35000
-  });
+  }).catch(error => ({
+    text: "",
+    html: "",
+    scripts: "",
+    networkText: `browserSnapshot failed: ${error.message}`
+  }));
 
   return [
     `=== ${candidate.label} ===`,
     `URL: ${candidate.url}`,
-    "=== VISIBLE TEXT ===",
+    domText,
+    "=== SNAPSHOT VISIBLE TEXT ===",
     snapshot.text,
-    "=== HTML ===",
+    "=== SNAPSHOT HTML ===",
     snapshot.html,
-    "=== SCRIPTS ===",
+    "=== SNAPSHOT SCRIPTS ===",
     snapshot.scripts,
-    "=== NETWORK ===",
+    "=== SNAPSHOT NETWORK ===",
     snapshot.networkText
   ].join("\n");
 }
