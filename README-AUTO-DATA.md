@@ -835,3 +835,24 @@ First 0.6 history step:
   - generic ballot card uses change in Democratic margin
   - approval card uses change in net approval
 - The 7-day comparison uses the oldest available stored point inside the last seven days, so it works with daily or every-two-day scraping.
+
+
+## Version 0.6.1
+
+GitHub automation step:
+- Added `.github/workflows/update-polls.yml`.
+- The workflow can be run manually from the GitHub Actions tab.
+- The workflow is also scheduled to run every 2 days at 10:17 UTC.
+- It installs Node dependencies, installs Chromium for Playwright, runs `npm run update-polls`, and commits changed data files back to the repository.
+- Added `.nojekyll` so GitHub Pages serves this static site directly.
+- Fixed VoteHub source-card links to use:
+  - `https://votehub.com/polls/?poll=generic_ballot_2026`
+  - `https://votehub.com/polls/?poll=trump_approval`
+
+Next setup on GitHub:
+1. Upload/commit this version to the repo.
+2. Go to Settings → Pages.
+3. Choose Deploy from a branch.
+4. Select `main` and `/ (root)`.
+5. Save.
+6. Go to Actions → Update polling data → Run workflow to test the scraper once.
