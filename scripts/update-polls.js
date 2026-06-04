@@ -1,13 +1,13 @@
 import fs from "fs/promises";
 
-import { getDDHQData } from "./sources/ddhq.js";
 import { getVoteHubData } from "./sources/votehub.js";
+import { getFiftyPlusOneData } from "./sources/fiftyplusone.js";
 import { getRaceToWHData } from "./sources/race-to-wh.js";
 import { getCNNData } from "./sources/cnn.js";
 import { getSilverData } from "./sources/silver.js";
 import { getNYTData } from "./sources/nyt.js";
 
-const sourceOrder = ["votehub", "silver", "cnn", "racetowh", "ddhq", "nyt"];
+const sourceOrder = ["votehub", "fiftyplusone", "silver", "cnn", "racetowh", "nyt"];
 
 async function readJson(path) {
   const text = await fs.readFile(path, "utf8");
@@ -18,10 +18,17 @@ function byKey(items) {
   return Object.fromEntries(items.map(item => [item.key, item]));
 }
 
+
+function sourceCanCountInAverage(item) {
+  // Only live scraped data counts in automated averages.
+  // Fallback/manual values can remain visible on source cards, but they do not affect the average.
+  return item && item.included === true && item.scrapeStatus === "live";
+}
+
 function average(items, firstKey, secondKey) {
   const included = items.filter(
     item =>
-      item.included &&
+      sourceCanCountInAverage(item) &&
       typeof item[firstKey] === "number" &&
       typeof item[secondKey] === "number"
   );
@@ -66,8 +73,22 @@ async function runSource(label, key, getter, fallback) {
     console.warn(`${label} failed completely, using manual fallback:`, error.message);
 
     return {
-      genericBallot: fallback.genericBallot[key],
+      genericBallot: fallback.genericBallot[key]
+        ? {
+            ...fallback.genericBallot[key],
+            included: false,
+            scrapeStatus: "fallback",
+            scrapeNote: `Source failed completely; fallback shown but not counted: ${error.message}`
+          }
+        : null,
       trumpApproval: fallback.trumpApproval[key]
+        ? {
+            ...fallback.trumpApproval[key],
+            included: false,
+            scrapeStatus: "fallback",
+            scrapeNote: `Source failed completely; fallback shown but not counted: ${error.message}`
+          }
+        : null
     };
   }
 }
@@ -139,6 +160,7 @@ function summarizeGenericSources(sources) {
     key: source.key,
     democrats: source.democrats,
     republicans: source.republicans,
+    included: sourceCanCountInAverage(source),
     status: source.scrapeStatus || null
   }));
 }
@@ -148,6 +170,7 @@ function summarizeApprovalSources(sources) {
     key: source.key,
     approve: source.approve,
     disapprove: source.disapprove,
+    included: sourceCanCountInAverage(source),
     status: source.scrapeStatus || null
   }));
 }
@@ -281,20 +304,14 @@ async function updatePollingHistory(data) {
 }
 
 async function main() {
-  console.log("Poll tracker updater version 0.6.8");
-  console.log("DDHQ direct DOM row extraction enabled.");
-  console.log("DDHQ table-order parser enabled.");
-  console.log("DDHQ table-row parser enabled.");
-  console.log("DDHQ top-average line parser enabled.");
-  console.log("DDHQ public static-page fallback enabled.");
+  console.log("Poll tracker updater version 0.6.10");
+  console.log("FiftyPlusOne source replaces FiftyPlusOne.");
+  console.log("Only live source values count in the combined average.");
   console.log("History storage enabled for growing trend graphs.");
   console.log("Fallback is only used when live data is unavailable.");
   console.log("VoteHub SVG-summary extraction enabled.");
   console.log("VoteHub source enabled.");
   console.log("Silver rendered Datawrapper iframe scraping enabled.");
-  console.log("DDHQ approval URL: votes.decisiondeskhq.com");
-  console.log("DDHQ scraper: text + HTML + scripts + network capture");
-  console.log("DDHQ generic URL: votes.decisiondeskhq.com");
   const manual = await readJson("data/manual-overrides.json");
 
   const fallback = {
@@ -303,8 +320,8 @@ async function main() {
   };
 
   const sourceFunctions = [
-    ["Decision Desk HQ", "ddhq", getDDHQData],
     ["VoteHub", "votehub", getVoteHubData],
+    ["FiftyPlusOne", "fiftyplusone", getFiftyPlusOneData],
     ["Race to WH", "racetowh", getRaceToWHData],
     ["CNN", "cnn", getCNNData],
     ["Silver Bulletin", "silver", getSilverData],

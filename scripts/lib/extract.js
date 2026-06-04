@@ -43,13 +43,12 @@ export function mergeWithFallback(scraped, fallback = {}) {
     )
   };
 
-  // If scraping fails or only partially succeeds, keep trusted manual fallback inclusion.
-  if (scraped.included === true) {
-    merged.included = true;
+  // Scraped inclusion wins. If a live scrape fails, fallback values can still be shown,
+  // but they should not be counted in the automated average.
+  if (scraped.included !== undefined) {
+    merged.included = scraped.included;
   } else if (hasFallbackValues && fallback.included === true) {
     merged.included = true;
-  } else if (scraped.included !== undefined) {
-    merged.included = scraped.included;
   }
 
   if (scraped.scrapeStatus) {

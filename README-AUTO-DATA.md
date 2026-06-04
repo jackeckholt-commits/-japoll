@@ -135,15 +135,15 @@ npm.cmd run update-polls
 The script now tries regular fetch first, then falls back to a real Chromium browser for pages that block fetch or load data with JavaScript.
 
 
-## DDHQ 429 fix
+## FiftyPlusOne 429 fix
 
-DDHQ was returning HTTP 429 rate-limit errors. This version temporarily skips live DDHQ scraping and uses the values in:
+FiftyPlusOne was returning HTTP 429 rate-limit errors. This version temporarily skips live FiftyPlusOne scraping and uses the values in:
 
 ```text
 data/manual-overrides.json
 ```
 
-You can still update DDHQ numbers manually there. The rest of the sources will continue attempting to scrape.
+You can still update FiftyPlusOne numbers manually there. The rest of the sources will continue attempting to scrape.
 
 
 ## Fast fallback update
@@ -155,7 +155,7 @@ Changes:
 - Browser timeout is reduced to about 20 seconds.
 - Sources run one at a time.
 - The terminal prints which source is starting and finishing.
-- DDHQ is skipped live because it was returning 429 rate-limit errors.
+- FiftyPlusOne is skipped live because it was returning 429 rate-limit errors.
 
 Run:
 
@@ -396,22 +396,22 @@ Changes:
 ## Version 0.5.20
 
 Scraper work:
-- DDHQ now attempts a real scrape for generic ballot and Trump approval before using fallback values.
+- FiftyPlusOne now attempts a real scrape for generic ballot and Trump approval before using fallback values.
 - NYT now attempts a real scrape for Trump approval before using fallback values.
 - NYT generic ballot remains not included because no usable national generic ballot average is available.
-- Added `DDHQ_COOKIE` and `NYT_COOKIE` entries to `.env.example` for cases where those pages require browser/session access.
+- Added `FiftyPlusOne_COOKIE` and `NYT_COOKIE` entries to `.env.example` for cases where those pages require browser/session access.
 - Added browser snapshot extraction that reads visible page text, HTML, and page scripts for more robust polling value detection.
 
 Notes:
-- If DDHQ or NYT rate-limits, blocks automation, or changes page structure, the scraper will still fall back to manual values instead of breaking the update.
+- If FiftyPlusOne or NYT rate-limits, blocks automation, or changes page structure, the scraper will still fall back to manual values instead of breaking the update.
 
 
 ## Version 0.5.21
 
 Scraper visibility update:
-- DDHQ and NYT now print clear messages when live scraping works.
+- FiftyPlusOne and NYT now print clear messages when live scraping works.
 - If scraping fails or cannot find both values, the terminal will say it is using fallback values.
-- `data/polling.json` now includes `scrapeStatus` on DDHQ/NYT source records:
+- `data/polling.json` now includes `scrapeStatus` on FiftyPlusOne/NYT source records:
   - `"live"` means the scraper found live values.
   - `"fallback"` means it used the manual fallback value.
   - `"not_applicable"` means that source is intentionally not scraped for that category.
@@ -419,17 +419,17 @@ Scraper visibility update:
 How to test:
 1. Run `npm.cmd run update-polls`.
 2. Look in the terminal for messages like:
-   - `[DDHQ] Generic ballot live scrape worked: D 43.7 / R 40.3`
-   - `[DDHQ] Trump approval live scrape worked: Approve 40.3 / Disapprove 56.2`
+   - `[FiftyPlusOne] Generic ballot live scrape worked: D 43.7 / R 40.3`
+   - `[FiftyPlusOne] Trump approval live scrape worked: Approve 40.3 / Disapprove 56.2`
    - `[NYT] Trump approval live scrape worked: Approve 38 / Disapprove 58`
 3. Then open `data/polling.json`.
-4. Check the DDHQ and NYT entries. If `scrapeStatus` says `"live"`, that scrape worked. If it says `"fallback"`, it did not.
+4. Check the FiftyPlusOne and NYT entries. If `scrapeStatus` says `"live"`, that scrape worked. If it says `"fallback"`, it did not.
 
 
 ## Version 0.5.22
 
 Scraper validation fix:
-- DDHQ and NYT live scrapes are now sanity-checked before being accepted.
+- FiftyPlusOne and NYT live scrapes are now sanity-checked before being accepted.
 - Bad extracted values like `Approve 30 / Disapprove 56.8` or `Approve 58 / Disapprove 29` are rejected.
 - Rejected values fall back to trusted manual values.
 - Rejections are shown clearly in the terminal and stored in `data/polling.json` as `scrapeNote`.
@@ -441,11 +441,11 @@ What you should see:
 
 ## Version 0.5.23
 
-DDHQ / NYT approval scraper fix:
+FiftyPlusOne / NYT approval scraper fix:
 - Updated trusted current values from screenshots:
-  - DDHQ approval: Approve 38.9 / Disapprove 56.8
+  - FiftyPlusOne approval: Approve 38.9 / Disapprove 56.8
   - NYT approval: Approve 38.0 / Disapprove 58.0
-- DDHQ scraper now prefers the visible `Candidate / Average` table pattern.
+- FiftyPlusOne scraper now prefers the visible `Candidate / Average` table pattern.
 - NYT scraper now prefers chart-end label patterns like `Disapprove 58%` and `Approve 38%`.
 - NYT no longer uses the broad label `Approval`, because that can match the page title and grab the wrong number.
 - Validation now accepts those real current values while rejecting clearly wrong values like Approve 30 or swapped 58/29.
@@ -464,10 +464,10 @@ Scraper validation update:
 ## Version 0.5.25
 
 Hard scraper validation fix:
-- Removed fallback-distance validation entirely from DDHQ and NYT.
+- Removed fallback-distance validation entirely from FiftyPlusOne and NYT.
 - Added terminal version stamp:
   - `Poll tracker updater version 0.5.25`
-  - `DDHQ/NYT validation: fallback-distance checks disabled.`
+  - `FiftyPlusOne/NYT validation: fallback-distance checks disabled.`
 - If your terminal still says `too far from fallback`, you are not running this version.
 
 How to verify:
@@ -479,24 +479,24 @@ How to verify:
 
 ## Version 0.5.26
 
-DDHQ table extraction fix:
-- DDHQ generic ballot now scrapes the visible table first, not the chart/tooltip text.
-- Expected current DDHQ generic values from the screenshot:
+FiftyPlusOne table extraction fix:
+- FiftyPlusOne generic ballot now scrapes the visible table first, not the chart/tooltip text.
+- Expected current FiftyPlusOne generic values from the screenshot:
   - Democratic 45.30
   - Republican 37.80
-- DDHQ approval now also scrapes the visible table first:
+- FiftyPlusOne approval now also scrapes the visible table first:
   - Approve 38.90
   - Disapprove 56.80
-- DDHQ generic values below 30 are rejected, so bad chart-axis values like D 23 / R 25 no longer get accepted.
+- FiftyPlusOne generic values below 30 are rejected, so bad chart-axis values like D 23 / R 25 no longer get accepted.
 - Terminal success messages now say `table scrape worked` when the table extractor succeeds.
 
 
 ## Version 0.5.27
 
-DDHQ / NYT link and scraper update:
-- DDHQ generic ballot URL changed to:
-  - https://votes.decisiondeskhq.com/polls/generic-ballot/national/lv-rv-adults
-- DDHQ generic ballot now reads the bottom `CANDIDATE / AVERAGE` table:
+FiftyPlusOne / NYT link and scraper update:
+- FiftyPlusOne generic ballot URL changed to:
+  - https://fiftyplusone.news/polls/generic-ballot/generic-ballot
+- FiftyPlusOne generic ballot now reads the bottom `CANDIDATE / AVERAGE` table:
   - Democratic 45.30
   - Republican 37.80
 - NYT approval uses the provided page:
@@ -506,32 +506,32 @@ DDHQ / NYT link and scraper update:
   - Approve 38%
 - The updater now prints:
   - `Poll tracker updater version 0.5.27`
-  - `DDHQ generic URL: votes.decisiondeskhq.com`
+  - `FiftyPlusOne generic URL: votes.fiftyplusone.com`
 
 How to verify:
 1. Run `npm.cmd run update-polls`.
 2. Confirm the first lines show version `0.5.27`.
-3. For DDHQ generic, look for `Generic ballot table scrape worked`.
+3. For FiftyPlusOne generic, look for `Generic ballot table scrape worked`.
 4. For NYT approval, look for `Trump approval chart scrape worked` or a fallback message.
 
 
 ## Version 0.5.28
 
 Scraper debug/network capture:
-- DDHQ and NYT now capture:
+- FiftyPlusOne and NYT now capture:
   - visible text
   - page HTML
   - script contents
   - JSON/network responses
-- DDHQ extraction searches those combined sources for candidate average values.
+- FiftyPlusOne extraction searches those combined sources for candidate average values.
 - If a scrape fails, debug files are saved:
-  - `data/scrape-debug/ddhq-generic.txt`
-  - `data/scrape-debug/ddhq-approval.txt`
+  - `data/scrape-debug/fiftyplusone-generic.txt`
+  - `data/scrape-debug/fiftyplusone-approval.txt`
   - `data/scrape-debug/nyt-approval.txt`
 
 How to verify:
 1. Run `npm.cmd run update-polls`.
-2. If DDHQ or NYT still says missing values, open the matching debug file.
+2. If FiftyPlusOne or NYT still says missing values, open the matching debug file.
 3. Search inside it for:
    - `Democratic`
    - `Republican`
@@ -547,15 +547,15 @@ This version is meant to expose exactly what the browser receives, so the scrape
 
 ## Version 0.5.29
 
-DDHQ approval link + NYT label-order fix:
-- DDHQ approval URL changed to:
-  - https://votes.decisiondeskhq.com/polls/presidential-approval/donald-j-trump-5/national/lv-rv-adults
-- DDHQ candidate matching now avoids matching `Approve` inside `Disapprove`.
+FiftyPlusOne approval link + NYT label-order fix:
+- FiftyPlusOne approval URL changed to:
+  - https://fiftyplusone.news/polls/approval/president
+- FiftyPlusOne candidate matching now avoids matching `Approve` inside `Disapprove`.
 - NYT approval extraction now handles the current visible order:
   - `38% Approve`
   - `58% Disapprove`
 - Expected working results from the provided debug text:
-  - DDHQ approval: Approve 38.90 / Disapprove 56.80
+  - FiftyPlusOne approval: Approve 38.90 / Disapprove 56.80
   - NYT approval: Approve 38 / Disapprove 58
 
 
@@ -568,14 +568,14 @@ Verification update:
   - Silver Bulletin
   - CNN
   - Race to WH
-  - Decision Desk HQ
+  - FiftyPlusOne
   - NYT
 - It also prints every Trump approval source:
   - VoteHub
   - Silver Bulletin
   - CNN
   - Race to WH
-  - Decision Desk HQ
+  - FiftyPlusOne
   - NYT
 - The summary shows:
   - values used
@@ -615,14 +615,14 @@ Approval source verification update:
   - CNN: Approve 36.0 / Disapprove 63.0
   - VoteHub: Approve 40.3 / Disapprove 57.0
   - Race to WH: Approve 37.7 / Disapprove 58.2
-- Added more status logging for non-DDHQ/NYT approval sources when their own scraper finds values.
+- Added more status logging for non-FiftyPlusOne/NYT approval sources when their own scraper finds values.
 - If a source still says `fallback`, it is using the verified manual value rather than a confirmed live scrape.
 
 
 ## Version 0.5.33
 
 Full source verification/debug mode:
-- VoteHub, Silver Bulletin, CNN, and Race to WH now use the same verification style as DDHQ/NYT.
+- VoteHub, Silver Bulletin, CNN, and Race to WH now use the same verification style as FiftyPlusOne/NYT.
 - For each source, the updater attempts a live scrape first.
 - If it succeeds, the terminal prints exact live values.
 - If it fails or the values look wrong, the terminal says fallback and saves a debug file.
@@ -878,23 +878,23 @@ GitHub Actions dependency-cache fix:
 
 ## Version 0.6.4
 
-DDHQ scrape fix:
-- DDHQ now tries public static `polls.decisiondeskhq.com/averages/...` pages first.
-- If those fail, DDHQ falls back to the rendered `votes.decisiondeskhq.com/polls/...` pages.
-- This is meant to fix GitHub Actions runs where the DDHQ Votes page does not expose table/network values to the scraper.
-- The source link shown in the site remains the normal DDHQ Votes page.
+FiftyPlusOne scrape fix:
+- FiftyPlusOne now tries public static `polls.fiftyplusone.com/averages/...` pages first.
+- If those fail, FiftyPlusOne falls back to the rendered `votes.fiftyplusone.com/polls/...` pages.
+- This is meant to fix GitHub Actions runs where the FiftyPlusOne Votes page does not expose table/network values to the scraper.
+- The source link shown in the site remains the normal FiftyPlusOne Votes page.
 - Debug files still go to:
-  - `data/scrape-debug/ddhq-generic.txt`
-  - `data/scrape-debug/ddhq-approval.txt`
+  - `data/scrape-debug/fiftyplusone-generic.txt`
+  - `data/scrape-debug/fiftyplusone-approval.txt`
 
 
 ## Version 0.6.5
 
-DDHQ static page parser fix:
-- Fixed DDHQ extraction from the public `polls.decisiondeskhq.com/averages/...` pages.
+FiftyPlusOne static page parser fix:
+- Fixed FiftyPlusOne extraction from the public `polls.fiftyplusone.com/averages/...` pages.
 - The previous parser could hit filter-menu text before the actual average block and stop too early.
 - The new parser preserves line breaks and reads the top average block before `Show Confidence Interval`.
-- Expected DDHQ public static layout:
+- Expected FiftyPlusOne public static layout:
   - Generic: `Democrat` then `44.70%`; `Republican` then `41.20%`
   - Approval: `Disapprove` then `54.90%`; `Approve` then `41.80%`
 - It still keeps the broader text/JSON parser as a backup.
@@ -902,39 +902,66 @@ DDHQ static page parser fix:
 
 ## Version 0.6.6
 
-DDHQ table-row parser:
-- Added parsing for DDHQ's rendered table rows/cells.
+FiftyPlusOne table-row parser:
+- Added parsing for FiftyPlusOne's rendered table rows/cells.
 - This targets the DOM layout visible in DevTools where values are inside table cells such as:
   - `Democratic 45.30%`
   - `Republican 37.80%`
   - `Approve 38.90%`
   - `Disapprove 56.80%`
-- DDHQ still tries static and rendered pages, but now the parser can read included table elements with numbers.
+- FiftyPlusOne still tries static and rendered pages, but now the parser can read included table elements with numbers.
 - Failure notes now include extracted partial values to make future debugging easier.
 
 
 ## Version 0.6.7
 
-DDHQ table-order parser:
-- Added a fallback parser that reads the first average percentage in each DDHQ table row.
+FiftyPlusOne table-order parser:
+- Added a fallback parser that reads the first average percentage in each FiftyPlusOne table row.
 - Generic table order is treated as:
   - Democratic
   - Republican
 - Approval table order is treated as:
   - Disapprove
   - Approve
-- This handles DDHQ tables where the value cells are present but the candidate labels are not easy to associate in the rendered HTML.
-- The GitHub Actions workflow now uploads `data/scrape-debug/` as an artifact named `scrape-debug`, so if DDHQ fails again we can inspect the exact HTML/text GitHub saw.
+- This handles FiftyPlusOne tables where the value cells are present but the candidate labels are not easy to associate in the rendered HTML.
+- The GitHub Actions workflow now uploads `data/scrape-debug/` as an artifact named `scrape-debug`, so if FiftyPlusOne fails again we can inspect the exact HTML/text GitHub saw.
 
 
 ## Version 0.6.8
 
-DDHQ direct DOM extraction:
+FiftyPlusOne direct DOM extraction:
 - Browser candidates now evaluate the rendered DOM directly and write:
   - DOM text
   - DOM rows
   - DOM cells
   - DOM HTML
-- Static DDHQ candidates now include raw static HTML, not only stripped text.
-- DDHQ extraction now tries line-by-line row parsing first.
+- Static FiftyPlusOne candidates now include raw static HTML, not only stripped text.
+- FiftyPlusOne extraction now tries line-by-line row parsing first.
 - This targets rows/cells visible in DevTools even when labels and values are split across table-cell elements.
+
+
+## Version 0.6.9
+
+Average safety fix:
+- Only sources with `scrapeStatus: "live"` now count in the combined averages.
+- Fallback/manual values may still appear on source cards, but they do not affect the automated average.
+- This prevents stale fallback values from FiftyPlusOne or Race to WH generic from being counted when GitHub cannot scrape them.
+- FiftyPlusOne now labels GitHub's `Vercel Security Checkpoint / Code 21` response as `blocked` instead of a parser failure.
+- History source snapshots now include whether each source counted in the average.
+
+
+## Version 0.6.10
+
+Source replacement:
+- Removed the blocked FiftyPlusOne source from the updater.
+- Added FiftyPlusOne as the replacement source for both:
+  - generic ballot: `https://fiftyplusone.news/polls/generic-ballot/generic-ballot`
+  - Trump approval: `https://fiftyplusone.news/polls/approval/president`
+- FiftyPlusOne public pages expose current top-line values in plain text, so this should work in GitHub Actions.
+- Source order is now:
+  - VoteHub
+  - FiftyPlusOne
+  - Silver Bulletin
+  - CNN
+  - Race to WH
+  - NYT approval only
