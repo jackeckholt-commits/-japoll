@@ -886,3 +886,15 @@ DDHQ scrape fix:
 - Debug files still go to:
   - `data/scrape-debug/ddhq-generic.txt`
   - `data/scrape-debug/ddhq-approval.txt`
+
+
+## Version 0.6.5
+
+DDHQ static page parser fix:
+- Fixed DDHQ extraction from the public `polls.decisiondeskhq.com/averages/...` pages.
+- The previous parser could hit filter-menu text before the actual average block and stop too early.
+- The new parser preserves line breaks and reads the top average block before `Show Confidence Interval`.
+- Expected DDHQ public static layout:
+  - Generic: `Democrat` then `44.70%`; `Republican` then `41.20%`
+  - Approval: `Disapprove` then `54.90%`; `Approve` then `41.80%`
+- It still keeps the broader text/JSON parser as a backup.

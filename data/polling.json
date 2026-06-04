@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-04T04:26:11.640Z",
+  "updatedAt": "2026-06-03T00:00:00.000Z",
   "genericBallot": {
     "average": {
       "democrats": 47.6,
@@ -10,12 +10,12 @@
         "key": "votehub",
         "name": "VoteHub",
         "shortName": "VoteHub",
-        "democrats": 49,
-        "republicans": 42.4,
+        "democrats": 49.0,
+        "republicans": 42.3,
         "included": true,
         "url": "https://votehub.com/polls/?poll=generic_ballot_2026",
-        "scrapeStatus": "live",
-        "scrapeNote": "Validated VoteHub SVG summary scrape"
+        "scrapeStatus": "fallback",
+        "scrapeNote": "Fallback value used only if the live scraper cannot find usable data."
       },
       {
         "key": "silver",
@@ -25,19 +25,18 @@
         "republicans": 41.8,
         "included": true,
         "url": "https://www.natesilver.net/p/generic-ballot-average-2026-nate-silver-bulletin-congress-polls",
-        "scrapeStatus": "live",
-        "scrapeNote": "Read from rendered Silver Bulletin Datawrapper iframe labels"
+        "scrapeStatus": "fallback",
+        "scrapeNote": "Fallback aligned with visible Silver chart labels and Datawrapper candidates"
       },
       {
         "key": "cnn",
         "name": "CNN",
         "shortName": "CNN",
-        "democrats": 47,
-        "republicans": 49,
+        "democrats": 47.0,
+        "republicans": 49.0,
         "included": true,
         "url": "https://www.cnn.com/polling/generic-ballot-poll-of-polls",
-        "scrapeStatus": "live",
-        "scrapeNote": "Validated live scrape"
+        "scrapeStatus": "fallback"
       },
       {
         "key": "racetowh",
@@ -48,7 +47,7 @@
         "included": true,
         "url": "https://www.racetothewh.com/polls/genericballot",
         "scrapeStatus": "fallback",
-        "scrapeNote": "Live scrape unavailable; using fallback values from manual-overrides.json"
+        "scrapeNote": "Fallback value used only if the live scraper cannot find usable data."
       },
       {
         "key": "ddhq",
@@ -58,8 +57,7 @@
         "republicans": 37.8,
         "included": true,
         "url": "https://votes.decisiondeskhq.com/polls/generic-ballot/national/lv-rv-adults",
-        "scrapeStatus": "fallback",
-        "scrapeNote": "Rejected live scrape: DDHQ public static generic page: missing one or both values | DDHQ Votes generic page: missing one or both values"
+        "scrapeStatus": "fallback"
       },
       {
         "key": "nyt",
@@ -69,8 +67,7 @@
         "republicans": null,
         "included": false,
         "note": "No national generic ballot average available",
-        "url": "https://www.nytimes.com/interactive/2026/us/elections/polls.html",
-        "scrapeStatus": "not_applicable"
+        "url": "https://www.nytimes.com/interactive/2026/us/elections/polls.html"
       }
     ]
   },
@@ -88,8 +85,8 @@
         "disapprove": 57.3,
         "included": true,
         "url": "https://votehub.com/polls/?poll=trump_approval",
-        "scrapeStatus": "live",
-        "scrapeNote": "Validated VoteHub SVG summary scrape"
+        "scrapeStatus": "fallback",
+        "scrapeNote": "Fallback value used only if the live scraper cannot find usable data."
       },
       {
         "key": "silver",
@@ -99,19 +96,17 @@
         "disapprove": 57.7,
         "included": true,
         "url": "https://www.natesilver.net/p/trump-approval-ratings-nate-silver-bulletin",
-        "scrapeStatus": "live",
-        "scrapeNote": "Read from rendered Silver Bulletin Datawrapper iframe labels"
+        "scrapeStatus": "fallback"
       },
       {
         "key": "cnn",
         "name": "CNN",
         "shortName": "CNN",
-        "approve": 36,
-        "disapprove": 63,
+        "approve": 36.0,
+        "disapprove": 63.0,
         "included": true,
         "url": "https://www.cnn.com/polling/approval/trump-cnn-poll-of-polls",
-        "scrapeStatus": "live",
-        "scrapeNote": "Validated live scrape"
+        "scrapeStatus": "fallback"
       },
       {
         "key": "racetowh",
@@ -121,8 +116,7 @@
         "disapprove": 58.2,
         "included": true,
         "url": "https://www.racetothewh.com/trump",
-        "scrapeStatus": "live",
-        "scrapeNote": "Validated live scrape"
+        "scrapeStatus": "fallback"
       },
       {
         "key": "ddhq",
@@ -132,19 +126,17 @@
         "disapprove": 56.8,
         "included": true,
         "url": "https://votes.decisiondeskhq.com/polls/presidential-approval/donald-j-trump-5/national/lv-rv-adults",
-        "scrapeStatus": "fallback",
-        "scrapeNote": "Rejected live scrape: DDHQ public static approval page: missing one or both values | DDHQ public static approval page alternate slug: missing one or both values | DDHQ Votes approval page: missing one or both values | DDHQ legacy approval page: missing one or both values"
+        "scrapeStatus": "fallback"
       },
       {
         "key": "nyt",
         "name": "The New York Times",
         "shortName": "NYT",
-        "approve": 38,
-        "disapprove": 58,
+        "approve": 38.0,
+        "disapprove": 58.0,
         "included": true,
         "url": "https://www.nytimes.com/interactive/polls/donald-trump-approval-rating-polls.html",
-        "scrapeStatus": "live",
-        "scrapeNote": "Validated NYT chart/network scrape"
+        "scrapeStatus": "fallback"
       }
     ]
   }

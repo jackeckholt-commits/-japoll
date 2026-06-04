@@ -64,6 +64,114 @@ function normalizeText(text) {
     .trim();
 }
 
+
+function textToLines(text) {
+  return String(text || "")
+    .replace(/<script[\s\S]*?<\/script>/gi, "\n")
+    .replace(/<style[\s\S]*?<\/style>/gi, "\n")
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<\/(p|div|section|article|li|tr|td|th|h1|h2|h3|h4|span)>/gi, "\n")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/\\"/g, '"')
+    .replace(/\\u0022/g, '"')
+    .replace(/\\u0025/g, "%")
+    .split(/\r?\n/)
+    .map(line => line.replace(/\s+/g, " ").trim())
+    .filter(Boolean);
+}
+
+function getTopAverageLines(text, titleHints = []) {
+  const lines = textToLines(text);
+  const lowerHints = titleHints.map(hint => hint.toLowerCase());
+
+  let startIndex = lines.findIndex(line => {
+    const lower = line.toLowerCase();
+    return lowerHints.some(hint => lower.includes(hint));
+  });
+
+  if (startIndex < 0) {
+    startIndex = lines.findIndex(line => line.toLowerCase().includes("populations in this average"));
+  }
+
+  if (startIndex < 0) {
+    startIndex = 0;
+  }
+
+  let endIndex = lines.findIndex((line, index) => {
+    return index > startIndex && line.toLowerCase().includes("show confidence interval");
+  });
+
+  if (endIndex < 0) {
+    endIndex = Math.min(lines.length, startIndex + 80);
+  }
+
+  return lines.slice(startIndex, endIndex);
+}
+
+function isExactLabel(line, labels) {
+  const normalized = String(line || "").replace(/:$/, "").trim().toLowerCase();
+
+  return labels.some(label => normalized === label.toLowerCase());
+}
+
+function parsePercentFromLine(line) {
+  const match = String(line || "").match(/(-?\d{1,2}(?:\.\d+)?)\s*%/);
+  if (!match) return null;
+
+  const value = parseNumber(match[1]);
+  return value !== null && value >= 20 && value <= 80 ? value : null;
+}
+
+function findPercentAfterExactLabel(lines, labels) {
+  for (let i = 0; i < lines.length; i += 1) {
+    if (!isExactLabel(lines[i], labels)) {
+      continue;
+    }
+
+    // Sometimes label and value can be on the same line.
+    const sameLine = parsePercentFromLine(lines[i]);
+    if (sameLine !== null) {
+      return sameLine;
+    }
+
+    // DDHQ's public static pages put the value on the next line.
+    for (let j = i + 1; j < Math.min(lines.length, i + 8); j += 1) {
+      const value = parsePercentFromLine(lines[j]);
+
+      if (value !== null) {
+        return value;
+      }
+
+      // Stop if another candidate label starts before a value appears.
+      if (isExactLabel(lines[j], ["Democrat", "Democrats", "Democratic", "Republican", "Republicans", "Approve", "Disapprove"])) {
+        break;
+      }
+    }
+  }
+
+  return null;
+}
+
+function extractGenericFromStaticTopBlock(text) {
+  const lines = getTopAverageLines(text, ["Generic Congressional Ballot"]);
+
+  return {
+    democrats: findPercentAfterExactLabel(lines, ["Democrat", "Democrats", "Democratic"]),
+    republicans: findPercentAfterExactLabel(lines, ["Republican", "Republicans"])
+  };
+}
+
+function extractApprovalFromStaticTopBlock(text) {
+  const lines = getTopAverageLines(text, ["Donald Trump Approval Rating"]);
+
+  return {
+    approve: findPercentAfterExactLabel(lines, ["Approve"]),
+    disapprove: findPercentAfterExactLabel(lines, ["Disapprove"])
+  };
+}
+
 async function writeDebugFile(name, text) {
   try {
     await fs.mkdir("data/scrape-debug", { recursive: true });
@@ -90,27 +198,28 @@ function findCandidateValue(blob, candidateLabels) {
     const escaped = escapeRegex(label);
     const labelPattern = `\\b${escaped}\\b`;
 
-    const patterns = [
-      // Public static page text: Democrat 43.70%
-      new RegExp(`${labelPattern}\\s+(\\d{1,2}(?:\\.\\d+)?)\\s*%`, "i"),
+    const patternSources = [
+      // Public static page text: Democrat 44.70%
+      `${labelPattern}\\s+(\\d{1,2}(?:\\.\\d+)?)\\s*%`,
 
       // Public/static table text sometimes has extra words between label and value.
-      new RegExp(`${labelPattern}[^0-9]{0,120}(\\d{1,2}(?:\\.\\d+)?)\\s*%`, "i"),
+      `${labelPattern}[^0-9]{0,120}(\\d{1,2}(?:\\.\\d+)?)\\s*%`,
 
       // JSON: "candidate":"Democratic"... "average":45.30
-      new RegExp(`"${escaped}"[^{}\\[\\]]{0,1000}?(?:"average"|"value"|"pct"|"percentage"|"estimate"|"support")\\s*:\\s*"?(-?\\d{1,2}(?:\\.\\d+)?)`, "i"),
+      `"${escaped}"[^{}\\[\\]]{0,1000}?(?:"average"|"value"|"pct"|"percentage"|"estimate"|"support")\\s*:\\s*"?(-?\\d{1,2}(?:\\.\\d+)?)`,
 
       // JSON: "name":"Democratic"... "average":"45.30"
-      new RegExp(`(?:"name"|"candidate"|"label"|"choice"|"party")\\s*:\\s*"${escaped}"[^{}\\[\\]]{0,1000}?(?:"average"|"value"|"pct"|"percentage"|"estimate"|"support")\\s*:\\s*"?(-?\\d{1,2}(?:\\.\\d+)?)`, "i"),
+      `(?:"name"|"candidate"|"label"|"choice"|"party")\\s*:\\s*"${escaped}"[^{}\\[\\]]{0,1000}?(?:"average"|"value"|"pct"|"percentage"|"estimate"|"support")\\s*:\\s*"?(-?\\d{1,2}(?:\\.\\d+)?)`,
 
       // JSON reversed order: "average":45.30 ... "name":"Democratic"
-      new RegExp(`(?:"average"|"value"|"pct"|"percentage"|"estimate"|"support")\\s*:\\s*"?(-?\\d{1,2}(?:\\.\\d+)?)"?[^{}\\[\\]]{0,1000}(?:"name"|"candidate"|"label"|"choice"|"party")\\s*:\\s*"${escaped}"`, "i")
+      `(?:"average"|"value"|"pct"|"percentage"|"estimate"|"support")\\s*:\\s*"?(-?\\d{1,2}(?:\\.\\d+)?)"?[^{}\\[\\]]{0,1000}(?:"name"|"candidate"|"label"|"choice"|"party")\\s*:\\s*"${escaped}"`
     ];
 
-    for (const pattern of patterns) {
-      const match = text.match(pattern);
+    for (const source of patternSources) {
+      const pattern = new RegExp(source, "gi");
+      let match;
 
-      if (match) {
+      while ((match = pattern.exec(text)) !== null) {
         const value = parseNumber(match[1]);
 
         if (value !== null && value >= 20 && value <= 80) {
@@ -124,6 +233,12 @@ function findCandidateValue(blob, candidateLabels) {
 }
 
 function extractGenericFromText(text) {
+  const topBlock = extractGenericFromStaticTopBlock(text);
+
+  if (topBlock.democrats !== null && topBlock.republicans !== null) {
+    return topBlock;
+  }
+
   const blob = normalizeText(text);
 
   const democrats = findCandidateValue(blob, ["Democrat", "Democratic", "Democrats"]);
@@ -136,6 +251,12 @@ function extractGenericFromText(text) {
 }
 
 function extractApprovalFromText(text) {
+  const topBlock = extractApprovalFromStaticTopBlock(text);
+
+  if (topBlock.approve !== null && topBlock.disapprove !== null) {
+    return topBlock;
+  }
+
   const blob = normalizeText(text);
 
   const approve = findCandidateValue(blob, ["Approve"]);

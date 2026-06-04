@@ -281,7 +281,8 @@ async function updatePollingHistory(data) {
 }
 
 async function main() {
-  console.log("Poll tracker updater version 0.6.4");
+  console.log("Poll tracker updater version 0.6.5");
+  console.log("DDHQ top-average line parser enabled.");
   console.log("DDHQ public static-page fallback enabled.");
   console.log("History storage enabled for growing trend graphs.");
   console.log("Fallback is only used when live data is unavailable.");
