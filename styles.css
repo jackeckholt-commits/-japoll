@@ -3557,3 +3557,10 @@ body:has(.about-layout) .contact-strip.container {
     font-size: clamp(3rem, 18vw, 5rem);
   }
 }
+
+
+/* 0.7.4: remove small blue label headings everywhere */
+.eyebrow,
+.section-label {
+  display: none !important;
+}

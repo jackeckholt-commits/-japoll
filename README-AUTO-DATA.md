@@ -164,3 +164,20 @@ Fixes:
 - Removed the small blue hero eyebrow heading from every page.
 - Moved the homepage trend chips outside the number rows, so the percent numbers cannot overlap them at any screen width.
 - Kept the two large percent numbers side-by-side when there is enough room and stacked them when the card gets narrow.
+
+
+## Version 0.7.4
+
+Changed files:
+- `index.html`
+- `national-averages.html`
+- `trump-approval.html`
+- `methodology.html`
+- `styles.css`
+- `package.json`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Removed the small blue label headings everywhere.
+- This includes both `.eyebrow` and `.section-label` labels.
+- Added a global CSS fallback so those labels stay hidden even if one remains in future markup.
