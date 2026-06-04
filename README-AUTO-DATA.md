@@ -147,3 +147,20 @@ Fixes:
 - The major-card number row now stacks based on card width, not just screen width.
 - Added a fallback media query for browsers without container-query support.
 - Negative weekly-change values now use a real minus sign with a thin space, so it reads like `− 0.4` instead of a cramped hyphen.
+
+
+## Version 0.7.3
+
+Changed files:
+- `index.html`
+- `national-averages.html`
+- `trump-approval.html`
+- `methodology.html`
+- `styles.css`
+- `package.json`
+- `README-AUTO-DATA.md`
+
+Fixes:
+- Removed the small blue hero eyebrow heading from every page.
+- Moved the homepage trend chips outside the number rows, so the percent numbers cannot overlap them at any screen width.
+- Kept the two large percent numbers side-by-side when there is enough room and stacked them when the card gets narrow.

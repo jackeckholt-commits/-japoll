@@ -3467,3 +3467,93 @@ body:has(.about-layout) .contact-strip.container {
     grid-template-columns: 1fr !important;
   }
 }
+
+
+/* 0.7.3: remove hero eyebrow spacing and make homepage trend chips non-overlapping */
+.hero .eyebrow {
+  display: none !important;
+}
+
+.hero h1 {
+  margin-top: 0;
+}
+
+.major-card .metric-number-row,
+.major-card .generic-number-row,
+.major-card .approval-number-row {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: clamp(22px, 3vw, 56px) !important;
+  align-items: end !important;
+}
+
+.major-card .number-item {
+  min-width: 0;
+}
+
+.major-card .number-item:first-child {
+  text-align: left;
+}
+
+.major-card .number-item:last-child {
+  text-align: right;
+}
+
+.major-card .number-item strong {
+  display: block;
+  max-width: 100%;
+  font-size: clamp(3.15rem, 5.1vw, 6.8rem);
+  line-height: 0.9;
+  white-space: nowrap;
+}
+
+.major-card .major-card-trend-center {
+  position: static !important;
+  transform: none !important;
+  width: min(100%, 250px) !important;
+  max-width: 250px !important;
+  margin: clamp(18px, 2vw, 28px) auto 0 !important;
+}
+
+.major-card .major-card-trend-center .trend-change {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 1380px) {
+  .major-card .metric-number-row,
+  .major-card .generic-number-row,
+  .major-card .approval-number-row {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .major-card .number-item {
+    display: grid !important;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    text-align: left !important;
+  }
+
+  .major-card .number-item:first-child,
+  .major-card .number-item:last-child {
+    text-align: left !important;
+  }
+
+  .major-card .major-card-trend-center {
+    width: min(100%, 270px) !important;
+    max-width: 270px !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .major-card .number-item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .major-card .number-item strong {
+    font-size: clamp(3rem, 18vw, 5rem);
+  }
+}
