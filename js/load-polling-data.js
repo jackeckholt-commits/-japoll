@@ -136,8 +136,42 @@ function formatSignedPoints(value) {
     return "N/A";
   }
 
+  if (value < 0) {
+    return `−\u2009${Math.abs(value).toFixed(1)}`;
+  }
+
   const sign = value > 0 ? "+" : "";
   return `${sign}${value.toFixed(1)}`;
+}
+
+
+function formatMiniChange(value) {
+  if (typeof value !== "number" || !Number.isFinite(value)) {
+    return "—";
+  }
+
+  const arrow = value > 0 ? "↗" : value < 0 ? "↘" : "→";
+  const sign = value > 0 ? "+" : value < 0 ? "−" : "";
+  const amount = Math.abs(value).toFixed(1);
+
+  return `${arrow} ${sign}${amount}`;
+}
+
+function applyMiniChange(selector, value) {
+  document.querySelectorAll(selector).forEach(element => {
+    element.textContent = formatMiniChange(value);
+    element.classList.remove("is-up", "is-down", "is-flat", "is-neutral");
+
+    if (typeof value !== "number" || !Number.isFinite(value)) {
+      element.classList.add("is-neutral");
+    } else if (value > 0) {
+      element.classList.add("is-up");
+    } else if (value < 0) {
+      element.classList.add("is-down");
+    } else {
+      element.classList.add("is-flat");
+    }
+  });
 }
 
 function calculateWeeklyChanges(history, data, adjustmentSettings) {
@@ -148,14 +182,21 @@ function calculateWeeklyChanges(history, data, adjustmentSettings) {
   const approvalPastRun = getSevenDayComparisonRun(runs, latestRun, "approval");
 
   let genericMarginChange = null;
+  let genericDemocratsChange = null;
+  let genericRepublicansChange = null;
   let approvalNetChange = null;
+  let approvalApproveChange = null;
+  let approvalDisapproveChange = null;
 
   if (latestRun && genericPastRun) {
     const latestGeneric = applyGenericAdjustment(latestRun.genericBallot.average, adjustmentSettings);
     const pastGeneric = applyGenericAdjustment(genericPastRun.genericBallot.average, adjustmentSettings);
     const latestMargin = latestGeneric.democrats - latestGeneric.republicans;
     const pastMargin = pastGeneric.democrats - pastGeneric.republicans;
+
     genericMarginChange = Number((latestMargin - pastMargin).toFixed(1));
+    genericDemocratsChange = Number((latestGeneric.democrats - pastGeneric.democrats).toFixed(1));
+    genericRepublicansChange = Number((latestGeneric.republicans - pastGeneric.republicans).toFixed(1));
   }
 
   if (latestRun && approvalPastRun) {
@@ -163,12 +204,19 @@ function calculateWeeklyChanges(history, data, adjustmentSettings) {
     const pastApproval = approvalPastRun.trumpApproval.average;
     const latestNet = latestApproval.approve - latestApproval.disapprove;
     const pastNet = pastApproval.approve - pastApproval.disapprove;
+
     approvalNetChange = Number((latestNet - pastNet).toFixed(1));
+    approvalApproveChange = Number((latestApproval.approve - pastApproval.approve).toFixed(1));
+    approvalDisapproveChange = Number((latestApproval.disapprove - pastApproval.disapprove).toFixed(1));
   }
 
   return {
     genericMarginChange,
-    approvalNetChange
+    genericDemocratsChange,
+    genericRepublicansChange,
+    approvalNetChange,
+    approvalApproveChange,
+    approvalDisapproveChange
   };
 }
 
@@ -180,6 +228,11 @@ function applyWeeklyChangeText(changes, setText) {
   setText("[data-weekly-label='approval-net']", "Net approval");
   setText("[data-weekly-change='approval-net']", formatSignedPoints(changes.approvalNetChange));
   setText("[data-weekly-caption='approval-net']", "Change since last week");
+
+  applyMiniChange("[data-weekly-mini='generic-democrats']", changes.genericDemocratsChange);
+  applyMiniChange("[data-weekly-mini='generic-republicans']", changes.genericRepublicansChange);
+  applyMiniChange("[data-weekly-mini='approval-approve']", changes.approvalApproveChange);
+  applyMiniChange("[data-weekly-mini='approval-disapprove']", changes.approvalDisapproveChange);
 }
 
 

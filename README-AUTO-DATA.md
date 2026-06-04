@@ -213,3 +213,56 @@ Fixes:
 - Restored the homepage major-card large-screen layout so the trend chip sits between the two large numbers again.
 - The cards only stack internally when the card itself gets too narrow.
 - Removed the small blue headings/badges from all HTML pages again and kept a CSS fallback hiding `.eyebrow` and `.section-label`.
+
+
+## Version 0.7.7
+
+Changed files:
+- `styles.css`
+- `package.json`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Remade the homepage major cards at medium screen widths.
+- At that size, the two percent values now sit cleanly side-by-side at the top of each card, with the trend chip centered below them.
+- Very large screens keep the original three-column layout.
+- Narrow/mobile screens still stack vertically.
+
+
+## Version 0.7.8
+
+Changed files:
+- `index.html`
+- `styles.css`
+- `js/load-polling-data.js`
+- `package.json`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Redesigned the homepage metric cards closer to the mockup.
+- Added a small arrow/change badge next to each main percent:
+  - Democrats
+  - Republicans
+  - Approve
+  - Disapprove
+- The center trend chip remains for margin/net approval change.
+- Medium widths use two percent values above and the trend chip centered below.
+
+
+## Version 0.7.9
+
+Changed files:
+- `index.html`
+- `styles.css`
+- `js/load-polling-data.js`
+- `package.json`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Removed the center trend chip from the homepage Generic Ballot and Trump Approval cards.
+- Each main percent now carries its own arrow/change badge:
+  - Democrats
+  - Republicans
+  - Approve
+  - Disapprove
+- This makes the cards simpler and avoids duplicated trend information.

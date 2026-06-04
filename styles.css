@@ -3737,3 +3737,441 @@ body:has(.about-layout) .contact-strip.container {
     margin: 0 auto !important;
   }
 }
+
+
+/* 0.7.7: medium-width homepage card redesign */
+@container (max-width: 900px) and (min-width: 561px) {
+  .major-card .metric-number-row,
+  .major-card .generic-number-row,
+  .major-card .approval-number-row {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-areas:
+      "first second"
+      "trend trend" !important;
+    gap: clamp(18px, 3cqw, 30px) clamp(20px, 4cqw, 42px) !important;
+    align-items: start !important;
+    margin-top: clamp(22px, 3cqw, 34px) !important;
+  }
+
+  .major-card .metric-number-row > .number-item:first-child,
+  .major-card .generic-number-row > .number-item:first-child,
+  .major-card .approval-number-row > .number-item:first-child {
+    grid-area: first !important;
+    order: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    gap: 6px !important;
+    text-align: left !important;
+  }
+
+  .major-card .metric-number-row > .number-item:last-child,
+  .major-card .generic-number-row > .number-item:last-child,
+  .major-card .approval-number-row > .number-item:last-child {
+    grid-area: second !important;
+    order: 2 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    justify-content: flex-start !important;
+    gap: 6px !important;
+    text-align: right !important;
+  }
+
+  .major-card .metric-number-row > .trend-chip,
+  .major-card .generic-number-row > .trend-chip,
+  .major-card .approval-number-row > .trend-chip {
+    grid-area: trend !important;
+    order: 3 !important;
+    width: min(100%, 280px) !important;
+    max-width: 280px !important;
+    justify-self: center !important;
+    margin: clamp(4px, 1cqw, 12px) auto 0 !important;
+  }
+
+  .major-card .number-item span {
+    margin: 0 !important;
+  }
+
+  .major-card .number-item strong {
+    font-size: clamp(3.8rem, 8.6cqw, 5.4rem) !important;
+    line-height: 0.9 !important;
+    white-space: nowrap !important;
+  }
+}
+
+@container (max-width: 560px) {
+  .major-card .metric-number-row,
+  .major-card .generic-number-row,
+  .major-card .approval-number-row {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "first"
+      "trend"
+      "second" !important;
+  }
+
+  .major-card .metric-number-row > .number-item:first-child,
+  .major-card .generic-number-row > .number-item:first-child,
+  .major-card .approval-number-row > .number-item:first-child,
+  .major-card .metric-number-row > .number-item:last-child,
+  .major-card .generic-number-row > .number-item:last-child,
+  .major-card .approval-number-row > .number-item:last-child {
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    align-items: baseline !important;
+    text-align: left !important;
+  }
+
+  .major-card .metric-number-row > .number-item:last-child,
+  .major-card .generic-number-row > .number-item:last-child,
+  .major-card .approval-number-row > .number-item:last-child {
+    grid-area: second !important;
+  }
+
+  .major-card .metric-number-row > .trend-chip,
+  .major-card .generic-number-row > .trend-chip,
+  .major-card .approval-number-row > .trend-chip {
+    grid-area: trend !important;
+    width: min(100%, 270px) !important;
+  }
+}
+
+/* Fallback if container queries do not apply */
+@media (max-width: 1380px) and (min-width: 761px) {
+  .major-card .metric-number-row,
+  .major-card .generic-number-row,
+  .major-card .approval-number-row {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-areas:
+      "first second"
+      "trend trend" !important;
+    gap: 24px 32px !important;
+  }
+
+  .major-card .metric-number-row > .number-item:first-child,
+  .major-card .generic-number-row > .number-item:first-child,
+  .major-card .approval-number-row > .number-item:first-child {
+    grid-area: first !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+
+  .major-card .metric-number-row > .number-item:last-child,
+  .major-card .generic-number-row > .number-item:last-child,
+  .major-card .approval-number-row > .number-item:last-child {
+    grid-area: second !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    text-align: right !important;
+  }
+
+  .major-card .metric-number-row > .trend-chip,
+  .major-card .generic-number-row > .trend-chip,
+  .major-card .approval-number-row > .trend-chip {
+    grid-area: trend !important;
+    width: min(100%, 280px) !important;
+    max-width: 280px !important;
+    justify-self: center !important;
+    margin: 0 auto !important;
+  }
+
+  .major-card .number-item strong {
+    font-size: clamp(3.8rem, 5.2vw, 5.2rem) !important;
+  }
+}
+
+
+/* 0.7.8: homepage metric card redesign with mini per-value changes */
+.major-card {
+  position: relative;
+}
+
+.major-card .metric-number-row,
+.major-card .generic-number-row,
+.major-card .approval-number-row {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(190px, 270px) minmax(0, 1fr) !important;
+  grid-template-areas: "first trend second" !important;
+  align-items: center !important;
+  gap: clamp(20px, 2.3vw, 52px) !important;
+  margin-top: clamp(26px, 3vw, 54px) !important;
+}
+
+.major-card .metric-number-row > .number-item:first-child,
+.major-card .generic-number-row > .number-item:first-child,
+.major-card .approval-number-row > .number-item:first-child {
+  grid-area: first !important;
+  display: grid !important;
+  gap: 10px !important;
+  align-self: start !important;
+  justify-self: start !important;
+  text-align: left !important;
+}
+
+.major-card .metric-number-row > .trend-chip,
+.major-card .generic-number-row > .trend-chip,
+.major-card .approval-number-row > .trend-chip {
+  grid-area: trend !important;
+  align-self: center !important;
+  justify-self: center !important;
+  width: min(100%, 270px) !important;
+  max-width: 270px !important;
+  margin: 0 !important;
+}
+
+.major-card .metric-number-row > .number-item:last-child,
+.major-card .generic-number-row > .number-item:last-child,
+.major-card .approval-number-row > .number-item:last-child {
+  grid-area: second !important;
+  display: grid !important;
+  gap: 10px !important;
+  align-self: end !important;
+  justify-self: end !important;
+  text-align: right !important;
+}
+
+.homepage-metric-value {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+  justify-content: inherit;
+  max-width: 100%;
+}
+
+.major-card .number-item:first-child .homepage-metric-value {
+  justify-content: flex-start;
+}
+
+.major-card .number-item:last-child .homepage-metric-value {
+  justify-content: flex-end;
+}
+
+.major-card .number-item strong {
+  font-size: clamp(3.5rem, 5vw, 6.9rem) !important;
+  line-height: 0.9 !important;
+  white-space: nowrap !important;
+}
+
+.mini-weekly-change {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  font-weight: 900;
+  font-size: clamp(0.95rem, 1.1vw, 1.22rem);
+  letter-spacing: -0.02em;
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: var(--light-gray);
+}
+
+.mini-weekly-change.is-up {
+  color: var(--disapprove-blue);
+  border-color: rgba(77, 163, 255, 0.28);
+  background: rgba(77, 163, 255, 0.09);
+}
+
+.mini-weekly-change.is-down {
+  color: var(--rep-red);
+  border-color: rgba(255, 91, 91, 0.28);
+  background: rgba(255, 91, 91, 0.09);
+}
+
+.mini-weekly-change.is-flat,
+.mini-weekly-change.is-neutral {
+  color: var(--light-gray);
+}
+
+@container (max-width: 900px) and (min-width: 561px) {
+  .major-card .metric-number-row,
+  .major-card .generic-number-row,
+  .major-card .approval-number-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-areas:
+      "first second"
+      "trend trend" !important;
+    gap: 24px 34px !important;
+  }
+
+  .major-card .metric-number-row > .trend-chip,
+  .major-card .generic-number-row > .trend-chip,
+  .major-card .approval-number-row > .trend-chip {
+    width: min(100%, 280px) !important;
+    max-width: 280px !important;
+  }
+
+  .major-card .number-item strong {
+    font-size: clamp(3.7rem, 8.4cqw, 5.6rem) !important;
+  }
+
+  .homepage-metric-value {
+    flex-wrap: wrap;
+    gap: 8px 10px;
+  }
+}
+
+@container (max-width: 560px) {
+  .major-card .metric-number-row,
+  .major-card .generic-number-row,
+  .major-card .approval-number-row {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "first"
+      "trend"
+      "second" !important;
+    gap: 18px !important;
+  }
+
+  .major-card .metric-number-row > .number-item:first-child,
+  .major-card .generic-number-row > .number-item:first-child,
+  .major-card .approval-number-row > .number-item:first-child,
+  .major-card .metric-number-row > .number-item:last-child,
+  .major-card .generic-number-row > .number-item:last-child,
+  .major-card .approval-number-row > .number-item:last-child {
+    justify-self: stretch !important;
+    text-align: left !important;
+  }
+
+  .major-card .number-item:first-child .homepage-metric-value,
+  .major-card .number-item:last-child .homepage-metric-value {
+    justify-content: space-between;
+  }
+
+  .major-card .number-item strong {
+    font-size: clamp(3.2rem, 16vw, 5rem) !important;
+  }
+}
+
+/* Media fallback for layouts where container queries do not apply */
+@media (max-width: 1380px) and (min-width: 761px) {
+  .major-card .metric-number-row,
+  .major-card .generic-number-row,
+  .major-card .approval-number-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-areas:
+      "first second"
+      "trend trend" !important;
+  }
+
+  .major-card .metric-number-row > .trend-chip,
+  .major-card .generic-number-row > .trend-chip,
+  .major-card .approval-number-row > .trend-chip {
+    justify-self: center !important;
+  }
+
+  .major-card .number-item strong {
+    font-size: clamp(3.6rem, 5vw, 5.5rem) !important;
+  }
+}
+
+
+/* 0.7.9: homepage values-only card layout */
+.major-card .homepage-values-only-row {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-areas: "first second" !important;
+  gap: clamp(28px, 5vw, 110px) !important;
+  align-items: center !important;
+  margin-top: clamp(32px, 4vw, 72px) !important;
+}
+
+.major-card .homepage-values-only-row > .trend-chip {
+  display: none !important;
+}
+
+.major-card .homepage-values-only-row > .number-item:first-child {
+  grid-area: first !important;
+  justify-self: start !important;
+  text-align: left !important;
+  display: grid !important;
+  gap: 10px !important;
+}
+
+.major-card .homepage-values-only-row > .number-item:last-child {
+  grid-area: second !important;
+  justify-self: end !important;
+  text-align: right !important;
+  display: grid !important;
+  gap: 10px !important;
+}
+
+.homepage-values-only-row .homepage-metric-value {
+  display: inline-flex !important;
+  align-items: baseline !important;
+  gap: 12px !important;
+  flex-wrap: wrap !important;
+}
+
+.homepage-values-only-row > .number-item:first-child .homepage-metric-value {
+  justify-content: flex-start !important;
+}
+
+.homepage-values-only-row > .number-item:last-child .homepage-metric-value {
+  justify-content: flex-end !important;
+}
+
+.homepage-values-only-row .number-item strong {
+  font-size: clamp(4rem, 6.4vw, 7.6rem) !important;
+  line-height: 0.9 !important;
+  white-space: nowrap !important;
+}
+
+.major-card .mini-weekly-change {
+  font-size: clamp(1rem, 1.2vw, 1.28rem) !important;
+  padding: 6px 10px !important;
+  transform: translateY(-0.18em);
+}
+
+@container (max-width: 760px) {
+  .major-card .homepage-values-only-row {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "first"
+      "second" !important;
+    gap: 24px !important;
+  }
+
+  .major-card .homepage-values-only-row > .number-item:first-child,
+  .major-card .homepage-values-only-row > .number-item:last-child {
+    justify-self: stretch !important;
+    text-align: left !important;
+  }
+
+  .homepage-values-only-row > .number-item:first-child .homepage-metric-value,
+  .homepage-values-only-row > .number-item:last-child .homepage-metric-value {
+    justify-content: space-between !important;
+  }
+
+  .homepage-values-only-row .number-item strong {
+    font-size: clamp(3.4rem, 16vw, 5.4rem) !important;
+  }
+}
+
+@media (max-width: 1180px) {
+  .major-card .homepage-values-only-row {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "first"
+      "second" !important;
+    gap: 24px !important;
+  }
+
+  .major-card .homepage-values-only-row > .number-item:first-child,
+  .major-card .homepage-values-only-row > .number-item:last-child {
+    justify-self: stretch !important;
+    text-align: left !important;
+  }
+
+  .homepage-values-only-row > .number-item:first-child .homepage-metric-value,
+  .homepage-values-only-row > .number-item:last-child .homepage-metric-value {
+    justify-content: space-between !important;
+  }
+}
