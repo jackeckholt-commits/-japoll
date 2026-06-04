@@ -3348,3 +3348,122 @@ body:has(.about-layout) .contact-strip.container {
     order: 3;
   }
 }
+
+
+/* 0.7.2: stronger homepage major-card overlap fix */
+.card.metric-card.major-card {
+  container-type: inline-size;
+}
+
+.major-card .metric-number-row,
+.major-card .approval-number-row,
+.major-card .generic-number-row {
+  grid-template-columns: minmax(120px, 1fr) minmax(160px, 210px) minmax(120px, 1fr) !important;
+  gap: clamp(12px, 1.4vw, 28px) !important;
+  align-items: center;
+}
+
+.major-card .number-item {
+  min-width: 0;
+}
+
+.major-card .number-item strong {
+  font-size: clamp(2.9rem, 4.1vw, 5.4rem);
+  line-height: 0.9;
+  white-space: nowrap;
+}
+
+.major-card .trend-chip {
+  min-width: 0 !important;
+  width: min(100%, 210px) !important;
+  max-width: 210px !important;
+  justify-self: center;
+}
+
+.major-card .trend-chip .trend-change {
+  font-size: clamp(1.85rem, 2.4vw, 2.9rem);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.major-card .trend-chip .trend-arrow-row {
+  gap: 8px;
+}
+
+@container (max-width: 720px) {
+  .major-card .metric-number-row,
+  .major-card .approval-number-row,
+  .major-card .generic-number-row {
+    grid-template-columns: 1fr !important;
+    justify-items: stretch !important;
+    text-align: left !important;
+    gap: 18px !important;
+  }
+
+  .major-card .number-item {
+    display: grid !important;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    width: 100%;
+    justify-self: stretch !important;
+    text-align: left !important;
+  }
+
+  .major-card .number-item:first-child,
+  .major-card .number-item:last-child {
+    justify-self: stretch !important;
+    text-align: left !important;
+  }
+
+  .major-card .trend-chip {
+    width: min(100%, 260px) !important;
+    max-width: 260px !important;
+    margin: 0 auto;
+  }
+
+  .major-card .number-item strong {
+    font-size: clamp(3.1rem, 13vw, 4.8rem);
+  }
+}
+
+/* Fallback for browsers without container-query support */
+@media (max-width: 1500px) and (min-width: 1181px) {
+  .major-card .metric-number-row,
+  .major-card .approval-number-row,
+  .major-card .generic-number-row {
+    grid-template-columns: 1fr !important;
+    justify-items: stretch !important;
+    text-align: left !important;
+    gap: 18px !important;
+  }
+
+  .major-card .number-item {
+    display: grid !important;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    width: 100%;
+    justify-self: stretch !important;
+    text-align: left !important;
+  }
+
+  .major-card .number-item:first-child,
+  .major-card .number-item:last-child {
+    justify-self: stretch !important;
+    text-align: left !important;
+  }
+
+  .major-card .trend-chip {
+    width: min(100%, 260px) !important;
+    max-width: 260px !important;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 760px) {
+  .major-card .metric-number-row,
+  .major-card .approval-number-row,
+  .major-card .generic-number-row {
+    grid-template-columns: 1fr !important;
+  }
+}

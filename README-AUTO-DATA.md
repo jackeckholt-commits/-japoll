@@ -132,3 +132,18 @@ Fix:
 - Prevented homepage Generic Ballot and Trump Approval numbers from overlapping the center trend chip at medium screen widths.
 - The major-card number row now stacks inside each card before the text gets cramped.
 - Large screens still keep the side-by-side card design.
+
+
+## Version 0.7.2
+
+Changed files:
+- `styles.css`
+- `js/load-polling-data.js`
+- `package.json`
+- `README-AUTO-DATA.md`
+
+Fixes:
+- Added a stronger responsive layout fix for the homepage Generic Ballot and Trump Approval cards.
+- The major-card number row now stacks based on card width, not just screen width.
+- Added a fallback media query for browsers without container-query support.
+- Negative weekly-change values now use a real minus sign with a thin space, so it reads like `− 0.4` instead of a cramped hyphen.
