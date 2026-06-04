@@ -266,3 +266,21 @@ Fix:
   - Approve
   - Disapprove
 - This makes the cards simpler and avoids duplicated trend information.
+
+
+## Version 0.7.10
+
+Changed files:
+- `styles.css`
+- `index.html`
+- `national-averages.html`
+- `trump-approval.html`
+- `methodology.html`
+- `package.json`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Added a mobile overscroll background fix so pulling past the top or bottom should stay dark instead of showing white bars.
+- Set the root `html` and `body` backgrounds to the site dark color.
+- Added `overscroll-behavior-y: none` where supported.
+- Added mobile `theme-color` meta tags.
