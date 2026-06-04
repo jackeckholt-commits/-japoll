@@ -3564,3 +3564,34 @@ body:has(.about-layout) .contact-strip.container {
 .section-label {
   display: none !important;
 }
+
+
+/* 0.7.5: mark where live polling data collection begins on trend charts */
+.trend-collection-start-line {
+  stroke: rgba(255, 255, 255, 0.72);
+  stroke-width: 2.5;
+  stroke-dasharray: 7 8;
+  pointer-events: none;
+}
+
+.trend-collection-start-label,
+.trend-collection-start-date {
+  fill: rgba(255, 255, 255, 0.92);
+  font-weight: 900;
+  paint-order: stroke;
+  stroke: rgba(8, 11, 14, 0.86);
+  stroke-width: 5;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.trend-collection-start-label {
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.trend-collection-start-date {
+  fill: rgba(217, 224, 230, 0.82);
+  font-size: 14px;
+}

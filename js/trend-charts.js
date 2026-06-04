@@ -100,12 +100,27 @@ function renderHoverPanel(panel, config, row) {
   `;
 }
 
+function getCollectionStartRow(rows) {
+  const index = rows.findIndex(row => row.estimated === false);
+
+  return index > 0 ? rows[index] : null;
+}
+
+function getCollectionPanelPrompt(collectionStartRow) {
+  return collectionStartRow
+    ? "Dotted line marks when live data collection began. Hover over the chart to see values."
+    : "Hover over the chart to see values.";
+}
+
 function renderTrendChart(container, config, rows) {
+  const collectionStartRow = getCollectionStartRow(rows);
+  const panelPrompt = getCollectionPanelPrompt(collectionStartRow);
+
   container.innerHTML = `
     <div class="trend-chart-shell">
       <div class="trend-svg-box"></div>
       <aside class="trend-legend"></aside>
-      <div class="trend-hover-panel">Hover over the chart to see values.</div>
+      <div class="trend-hover-panel">${panelPrompt}</div>
     </div>
   `;
 
@@ -193,6 +208,43 @@ function renderTrendChart(container, config, rows) {
     svg.appendChild(label);
   });
 
+  if (collectionStartRow) {
+    const x = xScale(parseDate(collectionStartRow.date));
+    const labelFitsRight = x < width - 220;
+    const labelX = labelFitsRight ? x + 12 : x - 12;
+    const textAnchor = labelFitsRight ? "start" : "end";
+
+    const marker = makeSvgElement("g", { class: "trend-collection-start" });
+
+    marker.appendChild(makeSvgElement("line", {
+      x1: x,
+      x2: x,
+      y1: margin.top,
+      y2: margin.top + plotHeight,
+      class: "trend-collection-start-line"
+    }));
+
+    const label = makeSvgElement("text", {
+      x: labelX,
+      y: margin.top + 18,
+      "text-anchor": textAnchor,
+      class: "trend-collection-start-label"
+    });
+    label.textContent = "Live data begins";
+    marker.appendChild(label);
+
+    const dateLabel = makeSvgElement("text", {
+      x: labelX,
+      y: margin.top + 38,
+      "text-anchor": textAnchor,
+      class: "trend-collection-start-date"
+    });
+    dateLabel.textContent = formatDate(collectionStartRow.date);
+    marker.appendChild(dateLabel);
+
+    svg.appendChild(marker);
+  }
+
   const seriesPoints = config.series.map(series => {
     const points = rows.map(row => ({
       date: row.date,
@@ -263,7 +315,7 @@ function renderTrendChart(container, config, rows) {
 
   overlay.addEventListener("mouseleave", () => {
     hoverDots.forEach(dot => dot.style.opacity = "0");
-    panel.innerHTML = "Hover over the chart to see values.";
+    panel.innerHTML = panelPrompt;
   });
 }
 
@@ -271,6 +323,7 @@ function rowFromHistoryRun(run, type) {
   if (type === "generic" && run.genericBallot && run.genericBallot.average) {
     return {
       date: run.date,
+      estimated: run.estimated === true,
       democrats: run.genericBallot.average.democrats,
       republicans: run.genericBallot.average.republicans
     };
@@ -279,6 +332,7 @@ function rowFromHistoryRun(run, type) {
   if (type === "approval" && run.trumpApproval && run.trumpApproval.average) {
     return {
       date: run.date,
+      estimated: run.estimated === true,
       approve: run.trumpApproval.average.approve,
       disapprove: run.trumpApproval.average.disapprove
     };
@@ -296,6 +350,7 @@ function rowsFromLegacyHistory(history, polling, type) {
     if (!rows.some(row => row.date === today)) {
       rows.push({
         date: today,
+        estimated: false,
         democrats: polling.genericBallot.average.democrats,
         republicans: polling.genericBallot.average.republicans
       });
@@ -335,12 +390,14 @@ function rowsFromPollingHistory(history, polling, type) {
     if (type === "generic") {
       rows.push({
         date: today,
+        estimated: false,
         democrats: polling.genericBallot.average.democrats,
         republicans: polling.genericBallot.average.republicans
       });
     } else {
       rows.push({
         date: today,
+        estimated: false,
         approve: polling.trumpApproval.average.approve,
         disapprove: polling.trumpApproval.average.disapprove
       });

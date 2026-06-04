@@ -181,3 +181,18 @@ Fix:
 - Removed the small blue label headings everywhere.
 - This includes both `.eyebrow` and `.section-label` labels.
 - Added a global CSS fallback so those labels stay hidden even if one remains in future markup.
+
+
+## Version 0.7.5
+
+Changed files:
+- `js/trend-charts.js`
+- `styles.css`
+- `package.json`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Added a dotted vertical marker to trend charts at the first live collected data point.
+- The marker is labeled `Live data begins` and shows the date.
+- The default hover panel text now explains that the dotted line marks when live data collection began.
+- This makes the jump from estimated starter history to live scraper data understandable.
