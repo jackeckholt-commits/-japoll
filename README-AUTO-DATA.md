@@ -856,3 +856,12 @@ Next setup on GitHub:
 4. Select `main` and `/ (root)`.
 5. Save.
 6. Go to Actions → Update polling data → Run workflow to test the scraper once.
+
+
+## Version 0.6.2
+
+GitHub Actions fix:
+- The updater workflow now uses `npm install --no-package-lock` instead of `npm ci`.
+- This fixes the GitHub Actions failure when the repository does not have `package-lock.json`.
+- Added `cache-dependency-path: package.json` for npm cache setup.
+- The Node.js 20 actions warning is not the cause of the failure; the missing lock file was.
