@@ -627,3 +627,16 @@ Fix:
 - Redesigned the Senate and Governor count blocks on the homepage into cleaner mini scoreboards.
 - Added party-tinted panels, a centered divider, and cleaner label/value spacing.
 - Kept the same values: Senate 47/53 and Governor 24/26.
+
+
+## Version 0.8.13
+
+Changed files:
+- `styles.css`
+- `package.json`
+- `scripts/update-polls.js`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Removed the extra top gap on the About/Methodology page.
+- Added a targeted override for pages using `.about-layout` so the About page header matches the tighter style of the other non-index pages.

@@ -5605,3 +5605,32 @@ table {
     font-size: 0.95rem !important;
   }
 }
+
+
+/* 0.8.13: remove extra top gap on About/Methodology page */
+body:has(.about-layout) .page-header {
+  min-height: auto !important;
+  padding-bottom: clamp(16px, 2.5vw, 34px) !important;
+  background-image: none !important;
+}
+
+body:has(.about-layout) .page-header .hero {
+  min-height: auto !important;
+  padding-top: clamp(24px, 4vw, 48px) !important;
+  padding-bottom: clamp(10px, 2vw, 22px) !important;
+}
+
+body:has(.about-layout) .page-header .hero h1 {
+  margin-top: 0 !important;
+}
+
+body:has(.about-layout) .page-content {
+  padding-top: clamp(14px, 2vw, 28px) !important;
+}
+
+@media (max-width: 760px) {
+  body:has(.about-layout) .page-header .hero {
+    padding-top: 22px !important;
+    padding-bottom: 12px !important;
+  }
+}
