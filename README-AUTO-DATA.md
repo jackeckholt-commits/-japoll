@@ -699,3 +699,17 @@ Fix:
 - Removed the repeated `Senate/Governor Races Map` heading block inside the race map card.
 - Softened the Senate/Governor control bars so the colors are less bright.
 - Kept the main page title and current-control title.
+
+
+## Version 0.8.18
+
+Changed files:
+- `index.html`
+- `styles.css`
+- `package.json`
+- `scripts/update-polls.js`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Added a subtle homepage guide line above the lower cards: `Click the boxes below to see more`.
+- Styled it as a small centered pill so users know the boxes are interactive.

@@ -6111,3 +6111,48 @@ body:has(.about-layout) .page-content {
 .race-control-heading {
   margin-top: 2px !important;
 }
+
+
+/* 0.8.18: homepage lower-card guide */
+.homepage-card-guide {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  margin: clamp(8px, 1.5vw, 18px) 0 clamp(-2px, 0.5vw, 6px);
+}
+
+.homepage-card-guide span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(159, 211, 255, 0.20);
+  background: rgba(159, 211, 255, 0.07);
+  color: var(--light-gray);
+  font-size: 0.95rem;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 14px 34px rgba(0, 0, 0, 0.16);
+}
+
+.homepage-card-guide span::after {
+  content: " ↓";
+  color: var(--baby-blue);
+  font-weight: 1000;
+  margin-left: 4px;
+}
+
+@media (max-width: 760px) {
+  .homepage-card-guide {
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+
+  .homepage-card-guide span {
+    font-size: 0.88rem;
+    padding: 9px 13px;
+  }
+}
