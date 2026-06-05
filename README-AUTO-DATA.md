@@ -284,3 +284,17 @@ Fix:
 - Set the root `html` and `body` backgrounds to the site dark color.
 - Added `overscroll-behavior-y: none` where supported.
 - Added mobile `theme-color` meta tags.
+
+
+## Version 0.7.11
+
+Changed files:
+- `index.html`
+- `styles.css`
+- `js/load-polling-data.js`
+- `package.json`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Added homepage text explaining that the small plus/minus arrow badges show change since last week.
+- Added hover/title text to the mini-change badges, such as “Up 0.4 points since last week.”

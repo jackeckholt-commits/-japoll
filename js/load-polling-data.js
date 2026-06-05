@@ -164,7 +164,22 @@ function applyMiniChange(selector, value) {
 
     if (typeof value !== "number" || !Number.isFinite(value)) {
       element.classList.add("is-neutral");
-    } else if (value > 0) {
+      element.title = "Change since last week is not available yet.";
+      element.setAttribute("aria-label", "Change since last week is not available yet.");
+      return;
+    }
+
+    const direction = value > 0 ? "up" : value < 0 ? "down" : "unchanged";
+    const amount = Math.abs(value).toFixed(1);
+    const label =
+      direction === "unchanged"
+        ? "Unchanged since last week."
+        : `${direction === "up" ? "Up" : "Down"} ${amount} points since last week.`;
+
+    element.title = label;
+    element.setAttribute("aria-label", label);
+
+    if (value > 0) {
       element.classList.add("is-up");
     } else if (value < 0) {
       element.classList.add("is-down");
