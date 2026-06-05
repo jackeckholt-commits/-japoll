@@ -501,3 +501,19 @@ Fix:
 - Updated the homepage lower cards into real clickable buttons/links.
 - Senate and Governor are no longer shown as work in progress on the homepage.
 - House remains a lower-page work-in-progress item only.
+
+
+## Version 0.8.5
+
+Changed files:
+- `index.html`
+- `styles.css`
+- `scripts/update-polls.js`
+- `package.json`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Added colored top borders to the lower homepage cards.
+- Replaced paragraph-heavy lower cards with compact overview values.
+- Senate and Governor now show placeholder D/GOP overview numbers directly on the homepage.
+- House remains a work-in-progress card.
