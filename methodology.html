@@ -14,72 +14,30 @@
 <div class="container">
 <nav class="top-nav">
 <a class="logo" href="index.html">National Poll Tracker</a>
-<div class="nav-links">
-<a href="methodology.html">About the Project</a>
+<div class="nav-links"><a aria-current="page" href="methodology.html">About the Project</a>
 <a href="national-averages.html">National Averages</a>
 <a href="trump-approval.html">Trump Approval</a>
-<a href="#contact">Contact</a>
+<a href="senate.html">Senate</a>
+<a href="governor.html">Governor</a>
+<a href="methodology.html#contact">Contact</a>
 </div>
 </nav>
 <section class="hero">
 <h1>About the Project</h1>
-<p class="intro">
-            A simple approach to comparing and anyaliseing polling avreages.
-          </p>
+<p class="intro">A simple approach to comparing and analyzing polling averages.</p>
 </section>
 </div>
 </header>
-<main class="container page-content text-page about-layout">
-<section class="content-card">
-<h2>Purpose</h2>
-<p>
-          This site acts as an aggregator of aggregators. The idea being that an avrage of avreages is more accurate
-            Instead of relying on one polling average,
-          it compares several polling averages to get a broader view of the political environment 
-            while also adding personal adjustments from my presonal algorithim.
-        </p>
-</section>
-<section class="content-card">
-<h2>Sources</h2>
-<p>
-          The tracker compares national averages from sources such as VoteHub, Silver Bulletin,
-          The New York Times, CNN, Race to WH, and FiftyPlusOne.
-        </p>
-</section>
-<section class="content-card">
-<h2>Average of averages</h2>
-<p>
-          The current avreage takes each source equal weight. Sources without an available average
-          are listed, but they are not included in the calculation until a usable value is available.
-        </p>
-</section>
-<section class="content-card">
-<h2>Current calculations</h2>
-<p>
-          The generic ballot average currently uses VoteHub, Silver Bulletin, CNN, Race to WH,
-          and FiftyPlusOne. The New York Times is unavailable for the generic ballot because thes no usable
-          national generic ballot average is available. The generic ballot is also modified my my algorithim in an atempt to
-            better account for polling errors.
-        </p>
-<p>
-          The Trump approval average currently uses The New York Times, Silver Bulletin, CNN, VoteHub,
-          Race to WH, and FiftyPlusOne.
-        </p>
-</section>
-<section class="content-card">
-<h2>Algorithm adjustment</h2>
-<p>
-          The generic ballot page includes an optional adjustment based on my algorithm. The main reason for this is that 
-            for the past elections polling has been off but ive added an ajustment that comes form my math which sould make the final results more accurate.
-            This adjustment ahs correctly helped my to get the results of the 2022 and 2204 elections right when other did not.
-        </p>
-
-</section>
+<main class="container page-content text-page about-layout"><section class="content-card"><h2>Purpose</h2><p>This site acts as an aggregator of aggregators. The idea is that an average of averages can be more useful than relying on one polling average alone.</p><p>Instead of using only one source, the tracker compares several polling averages to get a broader view of the national political environment while also showing my personal algorithm adjustment where it applies.</p></section>
+<section class="content-card"><h2>Sources</h2><p>The tracker compares national averages from sources such as VoteHub, Silver Bulletin, The New York Times, CNN, Race to WH, and FiftyPlusOne.</p></section>
+<section class="content-card"><h2>Average of averages</h2><p>The current average gives each usable source equal weight. Sources without an available average are listed for reference, but they are not included in the calculation until a usable value is available.</p></section>
+<section class="content-card"><h2>Current calculations</h2><p>The generic ballot average currently uses VoteHub, Silver Bulletin, CNN, Race to WH, and FiftyPlusOne. The New York Times is unavailable for the generic ballot because there is no usable national generic ballot average available from that source.</p><p>The generic ballot is also modified by my algorithm in an attempt to better account for polling errors.</p><p>The Trump approval average currently uses The New York Times, Silver Bulletin, CNN, VoteHub, Race to WH, and FiftyPlusOne.</p></section>
+<section class="content-card"><h2>Algorithm adjustment</h2><p>The generic ballot page includes an optional adjustment based on my algorithm. The main reason for this is that in past elections, polling averages have sometimes missed the final result.</p><p>I added an adjustment from my own math to try to make the final estimate more accurate. In my back-testing, this adjustment helped match the results of the 2022 and 2024 elections more closely than some unadjusted averages.</p></section>
 </main>
 <section class="contact-strip container" id="contact">
 <div class="contact-strip-card">
 <div class="contact-strip-title">
-<strong>Questions, corrections, or suggestions?</strong>
+<strong>Questions, corrections, or source suggestions?</strong>
 </div>
 <div class="contact-strip-links">
 <a href="mailto:jackeckholt@gmail.com">jackeckholt@gmail.com</a>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#09131b" name="theme-color"/>
+<title>Governor Races | National Poll Tracker</title>
+<link href="styles.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="page-shell">
+<header class="page-header">
+<div class="container">
+<nav class="top-nav">
+<a class="logo" href="index.html">National Poll Tracker</a>
+<div class="nav-links">
+<a href="methodology.html">About the Project</a>
+<a href="national-averages.html">National Averages</a>
+<a href="trump-approval.html">Trump Approval</a>
+<a href="senate.html">Senate</a>
+<a href="governor.html" aria-current="page">Governor</a>
+<a href="methodology.html#contact">Contact</a>
+</div>
+</nav>
+<section class="hero">
+<h1>Governor Races</h1>
+<p class="intro">A map-first view of the states with active governor races. Race ratings will be added later.</p>
+</section>
+</div>
+</header>
+
+<main class="container page-content race-page" data-race-map="governor">
+<section class="content-card race-map-card">
+<div class="race-section-heading">
+<h2>Governor Races Map</h2>
+<p>Clickable states are active races. Gray means the state is active but no rating data has been added yet. Lighter states are not active for this map.</p>
+</div>
+
+<div data-race-bar></div>
+
+<div class="race-map-layout">
+<div class="race-map-panel" data-race-map-svg>
+<div class="map-loading">Loading map…</div>
+</div>
+<aside class="race-detail-panel" data-race-detail>
+<h3>Select a state</h3>
+<p>Clickable states are active races. They are gray until polling, ratings, or forecast data is added.</p>
+</aside>
+</div>
+</section>
+</main>
+
+<section class="contact-strip container" id="contact">
+<div class="contact-strip-card">
+<div class="contact-strip-title">
+<strong>Questions, corrections, or suggestions?</strong>
+</div>
+<div class="contact-strip-links">
+<a href="mailto:jackeckholt@gmail.com">jackeckholt@gmail.com</a>
+<a href="https://www.instagram.com/jackeckholt" rel="noopener noreferrer" target="_blank">@jackeckholt</a>
+</div>
+</div>
+</section>
+
+<footer class="site-footer">
+<div class="container footer-inner">
+<p>National Poll Tracker</p>
+<p>State of the Race</p>
+</div>
+</footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+<script src="js/race-maps.js"></script>
+</body>
+</html>

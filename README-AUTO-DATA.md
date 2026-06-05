@@ -406,3 +406,52 @@ Changed files:
 Fix:
 - On mobile, the plus/minus weekly-change badge now stacks under the percentage instead of sitting to the side.
 - This keeps the badge inside the card and prevents it from getting pushed off-screen.
+
+
+## Version 0.8.0
+
+Changed files:
+- `senate.html`
+- `house.html`
+- `data/races.json`
+- `js/race-maps.js`
+- `styles.css`
+- `index.html`
+- `national-averages.html`
+- `trump-approval.html`
+- `methodology.html`
+- `scripts/update-polls.js`
+- `package.json`
+- `README-AUTO-DATA.md`
+
+Major update:
+- Added Senate and House race-map pages.
+- Added clickable U.S. state maps using active-race placeholders.
+- Senate active states are based on 2026 Senate seats up for election, including the two Class 3 special elections.
+- House map treats all states as active because all U.S. House seats are up.
+- Active states are gray until race data is added; non-active states are lighter.
+- Added expandable `data/races.json` structure for future ratings, leaders, called races, and state pages.
+
+
+## Version 0.8.1
+
+Changed files:
+- `governor.html`
+- `senate.html`
+- `house.html`
+- `data/races.json`
+- `styles.css`
+- `index.html`
+- `national-averages.html`
+- `trump-approval.html`
+- `methodology.html`
+- `scripts/update-polls.js`
+- `package.json`
+- `README-AUTO-DATA.md`
+
+Correction:
+- Replaced the House race map plan with Governor races.
+- Navigation now links to Senate and Governor.
+- Senate map has 35 active races.
+- Governor map has 36 active state races.
+- The old `house.html` now redirects to `governor.html` so a stale House page does not remain linked or confusing.
