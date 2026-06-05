@@ -455,3 +455,49 @@ Correction:
 - Senate map has 35 active races.
 - Governor map has 36 active state races.
 - The old `house.html` now redirects to `governor.html` so a stale House page does not remain linked or confusing.
+
+
+## Version 0.8.2
+
+Changed files:
+- `house.html`
+- `data/races.json`
+- `styles.css`
+- `index.html`
+- `national-averages.html`
+- `trump-approval.html`
+- `methodology.html`
+- `senate.html`
+- `governor.html`
+- `scripts/update-polls.js`
+- `package.json`
+- `README-AUTO-DATA.md`
+
+Correction:
+- Kept Senate and Governor as the active race-map sections.
+- Added House back as a work-in-progress page instead of redirecting it.
+- Navigation now includes `House WIP`.
+- `data/races.json` marks House as work in progress for later district-level expansion.
+
+
+## Version 0.8.3
+
+Changed files:
+- `index.html`
+- `house.html`
+- `senate.html`
+- `governor.html`
+- `national-averages.html`
+- `trump-approval.html`
+- `methodology.html`
+- `styles.css`
+- `scripts/update-polls.js`
+- `package.json`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Removed House WIP from the top navigation.
+- Kept Senate and Governor in the top navigation because those are the active map sections.
+- Updated the homepage lower cards into real clickable buttons/links.
+- Senate and Governor are no longer shown as work in progress on the homepage.
+- House remains a lower-page work-in-progress item only.

@@ -4766,3 +4766,92 @@ table {
 .race-page[data-race-map="governor"] .race-map-card {
   border-top-color: var(--line-strong);
 }
+
+
+/* 0.8.2: House work-in-progress section */
+.wip-card {
+  max-width: 980px;
+  margin: 0 auto;
+  border-top-color: rgba(255, 255, 255, 0.72);
+}
+
+.wip-card h2 {
+  font-size: clamp(2.4rem, 4vw, 4.4rem);
+  letter-spacing: -0.05em;
+  line-height: 1;
+  margin-bottom: 18px;
+}
+
+.wip-card p {
+  color: var(--light-gray);
+  font-size: clamp(1.05rem, 1.1vw, 1.24rem);
+  margin-bottom: 14px;
+}
+
+.wip-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 26px;
+}
+
+.detail-button.live-link {
+  display: inline-flex;
+  text-decoration: none;
+  color: var(--baby-blue);
+  background: rgba(159, 211, 255, 0.1);
+  border-color: rgba(159, 211, 255, 0.3);
+}
+
+
+/* 0.8.3: homepage lower navigation cards */
+.homepage-link-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 240px;
+  text-decoration: none;
+}
+
+.homepage-link-card h3 {
+  font-size: clamp(1.75rem, 2vw, 2.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.homepage-link-card p {
+  color: var(--light-gray);
+  font-size: clamp(1rem, 1vw, 1.15rem);
+}
+
+.card-action {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(159, 211, 255, 0.34);
+  background: rgba(159, 211, 255, 0.1);
+  color: var(--baby-blue);
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.homepage-link-card:hover .card-action {
+  background: rgba(159, 211, 255, 0.18);
+  color: var(--white);
+}
+
+.homepage-link-card.is-wip .card-action {
+  border-color: rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--light-gray);
+}
+
+@media (max-width: 760px) {
+  .homepage-link-card {
+    min-height: 190px;
+  }
+}
