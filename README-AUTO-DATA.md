@@ -535,3 +535,20 @@ Update:
 - Senate now uses current control: 47 Democratic caucus / 53 GOP.
 - Governor now uses current control: 24 Democratic governors / 26 GOP governors.
 - Homepage Senate/Governor overview cards now use those same current values.
+
+
+## Version 0.8.7
+
+Changed files:
+- `index.html`
+- `house.html`
+- `styles.css`
+- `scripts/update-polls.js`
+- `package.json`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Restored the About the Project paragraph on the homepage lower card.
+- Made the House homepage box non-clickable.
+- House now only shows a red `Work in progress` status.
+- The House page itself is a simple work-in-progress page with no map or action buttons.
