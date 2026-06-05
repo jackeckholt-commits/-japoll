@@ -24,7 +24,7 @@
 <section class="hero">
 <h1>About the Project</h1>
 <p class="intro">
-            A simple, transparent approach to comparing national polling averages.
+            A simple approach to comparing and anyaliseing polling avreages.
           </p>
 </section>
 </div>
@@ -33,8 +33,10 @@
 <section class="content-card">
 <h2>Purpose</h2>
 <p>
-          This site acts as an aggregator of aggregators. Instead of relying on one polling average,
-          it compares several polling averages to get a broader view of the political environment.
+          This site acts as an aggregator of aggregators. The idea being that an avrage of avreages is more accurate
+            Instead of relying on one polling average,
+          it compares several polling averages to get a broader view of the political environment 
+            while also adding personal adjustments from my presonal algorithim.
         </p>
 </section>
 <section class="content-card">
@@ -47,7 +49,7 @@
 <section class="content-card">
 <h2>Average of averages</h2>
 <p>
-          The current average gives each available source equal weight. Sources without an available average
+          The current avreage takes each source equal weight. Sources without an available average
           are listed, but they are not included in the calculation until a usable value is available.
         </p>
 </section>
@@ -55,8 +57,9 @@
 <h2>Current calculations</h2>
 <p>
           The generic ballot average currently uses VoteHub, Silver Bulletin, CNN, Race to WH,
-          and FiftyPlusOne. The New York Times is listed as unavailable for the generic ballot because no usable
-          national generic ballot average is available.
+          and FiftyPlusOne. The New York Times is unavailable for the generic ballot because thes no usable
+          national generic ballot average is available. The generic ballot is also modified my my algorithim in an atempt to
+            better account for polling errors.
         </p>
 <p>
           The Trump approval average currently uses The New York Times, Silver Bulletin, CNN, VoteHub,
@@ -66,20 +69,17 @@
 <section class="content-card">
 <h2>Algorithm adjustment</h2>
 <p>
-          The generic ballot page includes an optional adjustment based on my algorithm. This can be set as a
-          Democratic or Republican point adjustment, such as D+1.6 or R+1.6, and it applies only to the displayed
-          generic ballot average and the generic ballot trend graph.
+          The generic ballot page includes an optional adjustment based on my algorithm. The main reason for this is that 
+            for the past elections polling has been off but ive added an ajustment that comes form my math which sould make the final results more accurate.
+            This adjustment ahs correctly helped my to get the results of the 2022 and 2204 elections right when other did not.
         </p>
-<p>
-          The raw source cards still show the values reported by each aggregator. The adjustment can be edited in
-          <code>data/adjustments.json</code>.
-        </p>
+
 </section>
 </main>
 <section class="contact-strip container" id="contact">
 <div class="contact-strip-card">
 <div class="contact-strip-title">
-<strong>Questions, corrections, or source suggestions?</strong>
+<strong>Questions, corrections, or suggestions?</strong>
 </div>
 <div class="contact-strip-links">
 <a href="mailto:jackeckholt@gmail.com">jackeckholt@gmail.com</a>
