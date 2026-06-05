@@ -655,3 +655,18 @@ Fix:
 - Removed the `Current Senate control` and `Current governorships` pills from the homepage cards.
 - Swapped homepage card top colors: Senate is red, Governor is blue.
 - Redesigned the Dem/GOP count area into cleaner stat blocks.
+
+
+## Version 0.8.15
+
+Changed files:
+- `styles.css`
+- `package.json`
+- `scripts/update-polls.js`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Redesigned the Senate/Governor page control bars.
+- Made the bars rounded and more polished.
+- Removed the white bars on the left and right ends.
+- Improved the seat-count label styling inside the bars.

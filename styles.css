@@ -5838,3 +5838,146 @@ body:has(.about-layout) .page-content {
     font-size: 0.95rem !important;
   }
 }
+
+
+/* 0.8.15: rounded Senate/Governor page control bars */
+.current-control-bar {
+  position: relative;
+  height: clamp(74px, 7vw, 92px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.10) !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-radius: 28px !important;
+  overflow: hidden !important;
+  background:
+    linear-gradient(135deg, rgba(77, 163, 255, 0.10), rgba(255, 91, 91, 0.10)),
+    rgba(255, 255, 255, 0.035) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 22px 52px rgba(0, 0, 0, 0.22);
+}
+
+.current-control-bar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.10), transparent 18%, transparent 82%, rgba(255,255,255,0.08)),
+    linear-gradient(180deg, rgba(255,255,255,0.09), transparent 45%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.current-control-bar .race-bar-segment {
+  position: relative;
+  z-index: 1;
+  min-width: 0 !important;
+  height: 100%;
+  border: 0 !important;
+  padding: 0 clamp(18px, 2.4vw, 32px) !important;
+  display: flex !important;
+  align-items: center !important;
+  color: var(--white);
+  text-shadow: none !important;
+}
+
+.current-control-bar .bar-dem-solid {
+  justify-content: flex-start !important;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(95, 183, 255, 0.34), transparent 48%),
+    linear-gradient(135deg, #1768c7, #0f56ad) !important;
+}
+
+.current-control-bar .bar-rep-solid {
+  justify-content: flex-end !important;
+  background:
+    radial-gradient(circle at 90% 10%, rgba(255, 126, 126, 0.34), transparent 48%),
+    linear-gradient(135deg, #b51e27, #94141d) !important;
+}
+
+.current-control-bar .bar-dem-solid::after,
+.current-control-bar .bar-rep-solid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.28;
+  pointer-events: none;
+  background-image:
+    linear-gradient(135deg, rgba(255,255,255,0.12) 0 1px, transparent 1px 14px);
+}
+
+.current-control-bar .race-bar-segment span {
+  position: relative;
+  z-index: 2;
+  display: inline-flex !important;
+  align-items: baseline !important;
+  gap: clamp(8px, 1vw, 12px) !important;
+  white-space: nowrap;
+}
+
+.current-control-bar .bar-count {
+  font-size: clamp(2.35rem, 4vw, 3.45rem) !important;
+  line-height: 0.86 !important;
+  letter-spacing: -0.07em !important;
+  font-weight: 1000 !important;
+  font-variant-numeric: tabular-nums;
+  color: #ffffff;
+  text-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+}
+
+.current-control-bar .bar-label {
+  font-size: clamp(0.95rem, 1.25vw, 1.25rem) !important;
+  line-height: 1 !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.race-control-heading {
+  margin-bottom: 18px !important;
+}
+
+.race-control-heading h3 {
+  font-size: clamp(2.1rem, 3.2vw, 3.6rem) !important;
+  letter-spacing: -0.055em !important;
+}
+
+.race-control-heading p {
+  color: var(--light-gray) !important;
+  font-size: clamp(0.98rem, 1.18vw, 1.15rem) !important;
+  margin-top: 10px !important;
+}
+
+.race-bar-subnote {
+  margin: 14px 0 28px !important;
+  color: var(--light-gray) !important;
+  font-size: 0.96rem !important;
+  font-weight: 850 !important;
+}
+
+@media (max-width: 700px) {
+  .current-control-bar {
+    height: 66px !important;
+    border-radius: 20px !important;
+  }
+
+  .current-control-bar .race-bar-segment {
+    padding: 0 13px !important;
+  }
+
+  .current-control-bar .race-bar-segment span {
+    gap: 6px !important;
+  }
+
+  .current-control-bar .bar-count {
+    font-size: clamp(1.65rem, 8vw, 2.2rem) !important;
+  }
+
+  .current-control-bar .bar-label {
+    font-size: 0.78rem !important;
+  }
+
+  .race-control-heading h3 {
+    font-size: clamp(1.8rem, 8vw, 2.5rem) !important;
+  }
+}
