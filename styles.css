@@ -4242,3 +4242,42 @@ body {
 .mini-weekly-change {
   cursor: help;
 }
+
+
+/* 0.7.13: clearer 1W badges with green increase and red decrease */
+.mini-weekly-change {
+  cursor: default !important;
+  font-size: clamp(0.86rem, 1vw, 1.08rem) !important;
+  letter-spacing: 0.01em !important;
+  padding: 6px 10px !important;
+  border-radius: 999px !important;
+}
+
+.mini-weekly-change.is-up {
+  color: #79d38f !important;
+  border-color: rgba(121, 211, 143, 0.4) !important;
+  background: rgba(121, 211, 143, 0.12) !important;
+}
+
+.mini-weekly-change.is-down {
+  color: var(--rep-red) !important;
+  border-color: rgba(255, 91, 91, 0.42) !important;
+  background: rgba(255, 91, 91, 0.12) !important;
+}
+
+.mini-weekly-change.is-flat,
+.mini-weekly-change.is-neutral {
+  color: var(--light-gray) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  background: rgba(255, 255, 255, 0.055) !important;
+}
+
+.homepage-trend-explainer {
+  margin-top: 6px !important;
+}
+
+.homepage-trend-explainer::before {
+  content: "1W ";
+  color: #79d38f;
+  font-weight: 900;
+}

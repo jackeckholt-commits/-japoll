@@ -298,3 +298,31 @@ Changed files:
 Fix:
 - Added homepage text explaining that the small plus/minus arrow badges show change since last week.
 - Added hover/title text to the mini-change badges, such as “Up 0.4 points since last week.”
+
+
+## Version 0.7.12
+
+Changed files:
+- `methodology.html`
+- `package.json`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Replaced the About/Methodology page text using the new reference copy.
+- Cleaned spelling and grammar while keeping the same meaning.
+- Added clearer sections for purpose, sources, average-of-averages, current calculations, and algorithm adjustment.
+
+
+## Version 0.7.13
+
+Changed files:
+- `index.html`
+- `styles.css`
+- `js/load-polling-data.js`
+- `package.json`
+- `README-AUTO-DATA.md`
+
+Fix:
+- The small homepage change badges now include `1W`, so it is clear they are weekly changes.
+- Increases are green and decreases are red.
+- Removed hover/title dependence; the weekly-change meaning is visible directly on the page.

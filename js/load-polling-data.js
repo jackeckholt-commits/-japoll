@@ -147,25 +147,25 @@ function formatSignedPoints(value) {
 
 function formatMiniChange(value) {
   if (typeof value !== "number" || !Number.isFinite(value)) {
-    return "—";
+    return "1W —";
   }
 
   const arrow = value > 0 ? "↗" : value < 0 ? "↘" : "→";
   const sign = value > 0 ? "+" : value < 0 ? "−" : "";
   const amount = Math.abs(value).toFixed(1);
 
-  return `${arrow} ${sign}${amount}`;
+  return `1W ${arrow} ${sign}${amount}`;
 }
 
 function applyMiniChange(selector, value) {
   document.querySelectorAll(selector).forEach(element => {
     element.textContent = formatMiniChange(value);
     element.classList.remove("is-up", "is-down", "is-flat", "is-neutral");
+    element.removeAttribute("title");
 
     if (typeof value !== "number" || !Number.isFinite(value)) {
       element.classList.add("is-neutral");
-      element.title = "Change since last week is not available yet.";
-      element.setAttribute("aria-label", "Change since last week is not available yet.");
+      element.setAttribute("aria-label", "Weekly change is not available yet.");
       return;
     }
 
@@ -173,10 +173,9 @@ function applyMiniChange(selector, value) {
     const amount = Math.abs(value).toFixed(1);
     const label =
       direction === "unchanged"
-        ? "Unchanged since last week."
-        : `${direction === "up" ? "Up" : "Down"} ${amount} points since last week.`;
+        ? "Weekly change: unchanged."
+        : `Weekly change: ${direction === "up" ? "up" : "down"} ${amount} points.`;
 
-    element.title = label;
     element.setAttribute("aria-label", label);
 
     if (value > 0) {
