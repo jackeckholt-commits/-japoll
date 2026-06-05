@@ -640,3 +640,18 @@ Changed files:
 Fix:
 - Removed the extra top gap on the About/Methodology page.
 - Added a targeted override for pages using `.about-layout` so the About page header matches the tighter style of the other non-index pages.
+
+
+## Version 0.8.14
+
+Changed files:
+- `index.html`
+- `styles.css`
+- `package.json`
+- `scripts/update-polls.js`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Removed the `Current Senate control` and `Current governorships` pills from the homepage cards.
+- Swapped homepage card top colors: Senate is red, Governor is blue.
+- Redesigned the Dem/GOP count area into cleaner stat blocks.
