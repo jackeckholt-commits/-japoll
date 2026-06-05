@@ -363,3 +363,17 @@ Fix:
 - Removed `1W` from each badge.
 - Added one clear homepage note explaining that plus/minus badges show weekly change.
 - Tightened mobile badge sizing so the cards look cleaner before moving into version 0.8.
+
+
+## Version 0.7.16
+
+Changed files:
+- `styles.css`
+- `scripts/update-polls.js`
+- `package.json`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Blocked horizontal mobile overscroll/page sliding.
+- Locked horizontal overflow on `html`, `body`, and `.page-shell`.
+- Added mobile-safe max-width rules so wide elements cannot push the page sideways.
