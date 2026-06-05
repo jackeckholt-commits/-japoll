@@ -713,3 +713,17 @@ Changed files:
 Fix:
 - Added a subtle homepage guide line above the lower cards: `Click the boxes below to see more`.
 - Styled it as a small centered pill so users know the boxes are interactive.
+
+
+## Version 0.8.19
+
+Changed files:
+- `index.html`
+- `styles.css`
+- `package.json`
+- `scripts/update-polls.js`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Moved the `Click the boxes below to see more` guide above the entire homepage card grid.
+- It now appears above the generic ballot and Trump approval boxes too.

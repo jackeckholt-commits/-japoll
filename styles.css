@@ -6156,3 +6156,23 @@ body:has(.about-layout) .page-content {
     padding: 9px 13px;
   }
 }
+
+
+/* 0.8.19: guide sits above all homepage boxes */
+.homepage-card-guide-top {
+  grid-column: 1 / -1;
+  order: -10;
+  margin: 0 0 clamp(8px, 1.4vw, 16px) !important;
+}
+
+.homepage-card-guide-top span {
+  background:
+    linear-gradient(135deg, rgba(77, 163, 255, 0.10), rgba(255, 91, 91, 0.08)),
+    rgba(255, 255, 255, 0.045);
+}
+
+@media (max-width: 760px) {
+  .homepage-card-guide-top {
+    margin-bottom: 8px !important;
+  }
+}
