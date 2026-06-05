@@ -377,3 +377,19 @@ Fix:
 - Blocked horizontal mobile overscroll/page sliding.
 - Locked horizontal overflow on `html`, `body`, and `.page-shell`.
 - Added mobile-safe max-width rules so wide elements cannot push the page sideways.
+
+
+## Version 0.7.17
+
+Changed files:
+- `styles.css`
+- `js/load-polling-data.js`
+- `scripts/update-polls.js`
+- `package.json`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Removed arrow characters from the mini weekly-change badge text completely.
+- Desktop arrows are now CSS-only.
+- Mobile hides those CSS arrows, so the phone should no longer render them as emoji.
+- The badges still show plus/minus values such as `+0.8` and `−0.4`.
