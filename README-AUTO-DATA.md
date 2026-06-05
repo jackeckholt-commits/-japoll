@@ -552,3 +552,33 @@ Fix:
 - Made the House homepage box non-clickable.
 - House now only shows a red `Work in progress` status.
 - The House page itself is a simple work-in-progress page with no map or action buttons.
+
+
+## Version 0.8.8
+
+Changed files:
+- `index.html`
+- `styles.css`
+- `scripts/update-polls.js`
+- `package.json`
+- `README-AUTO-DATA.md`
+
+Update:
+- Redesigned the Senate and Governor homepage summary numbers so they look cleaner and more intentional.
+- Added party-tinted mini stat panels and a centered divider for a better visual balance.
+
+
+## Version 0.8.9
+
+Changed files:
+- `senate.html`
+- `governor.html`
+- `styles.css`
+- `scripts/update-polls.js`
+- `package.json`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Removed the contact strip from the bottom of the Senate and Governor pages.
+- Made the site footer look more finished with a glass/gradient pill style.
+- Race-page footer now says the race maps are early placeholders instead of showing the contact block.
