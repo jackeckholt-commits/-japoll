@@ -613,3 +613,17 @@ Fix:
 - Removed the U.S. outline/background from non-index page headers.
 - Shrunk non-index page headers so they are just a title and subtitle area.
 - Kept the homepage hero separate so the index page can keep its larger design.
+
+
+## Version 0.8.12
+
+Changed files:
+- `styles.css`
+- `package.json`
+- `scripts/update-polls.js`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Redesigned the Senate and Governor count blocks on the homepage into cleaner mini scoreboards.
+- Added party-tinted panels, a centered divider, and cleaner label/value spacing.
+- Kept the same values: Senate 47/53 and Governor 24/26.
