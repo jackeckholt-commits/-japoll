@@ -1,20 +1,4 @@
 
-/* 0.8.20: start historical trend charts in March to reduce point compression. */
-const TREND_CHART_VISIBLE_START_MONTH = 2;
-
-function getTrendChartVisibleStartDate(points) {
-  const dates = (points || [])
-    .map(point => new Date(point.date || point.updatedAt || point.x))
-    .filter(date => !Number.isNaN(date.getTime()));
-
-  if (!dates.length) {
-    return null;
-  }
-
-  const latest = new Date(Math.max(...dates.map(date => date.getTime())));
-  return new Date(latest.getFullYear(), TREND_CHART_VISIBLE_START_MONTH, 1);
-}
-
 function parseDate(value) {
   const date = new Date(`${value}T00:00:00`);
   return Number.isNaN(date.getTime()) ? new Date(value) : date;
@@ -129,7 +113,29 @@ function getCollectionPanelPrompt(collectionStartRow) {
     : "Hover over the chart to see values.";
 }
 
+
+function filterRowsByConfiguredStartMonth(rows, config) {
+  if (!config || typeof config.startMonthIndex !== "number") {
+    return rows;
+  }
+
+  const dates = rows
+    .map(row => parseDate(row.date))
+    .filter(date => !Number.isNaN(date.getTime()));
+
+  if (!dates.length) {
+    return rows;
+  }
+
+  const latestDate = new Date(Math.max(...dates.map(date => date.getTime())));
+  const startDate = new Date(latestDate.getFullYear(), config.startMonthIndex, 1);
+  const filteredRows = rows.filter(row => parseDate(row.date) >= startDate);
+
+  return filteredRows.length >= 2 ? filteredRows : rows;
+}
+
 function renderTrendChart(container, config, rows) {
+  rows = filterRowsByConfiguredStartMonth(rows, config);
   const collectionStartRow = getCollectionStartRow(rows);
   const panelPrompt = getCollectionPanelPrompt(collectionStartRow);
 
@@ -475,6 +481,7 @@ async function loadTrendCharts() {
     if (type === "generic") {
       renderTrendChart(element, {
         title: "Generic congressional ballot trend",
+        startMonthIndex: 2,
         series: [
           { key: "democrats", label: "Democrats", className: "blue-line" },
           { key: "republicans", label: "Republicans", className: "red-line" }

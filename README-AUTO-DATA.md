@@ -740,3 +740,17 @@ Changed files:
 Fix:
 - Changed the homepage trend chart visible window to start in March instead of February.
 - This should spread the visible points out more and make the latest dots look less compressed.
+
+
+## Version 0.8.21
+
+Changed files:
+- `js/trend-charts.js`
+- `package.json`
+- `scripts/update-polls.js`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Made the March start date apply only to the generic ballot trend chart.
+- Trump approval keeps its normal full date range.
+- The chart start month is now controlled per chart config instead of globally.
