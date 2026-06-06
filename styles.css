@@ -6176,3 +6176,20 @@ body:has(.about-layout) .page-content {
     margin-bottom: 8px !important;
   }
 }
+
+
+/* 0.8.22: remove repeated hero subtitles on race/about pages */
+body:has(.race-page) .page-header .hero .intro,
+body:has(.about-layout) .page-header .hero .intro {
+  display: none !important;
+}
+
+body:has(.race-page) .page-header .hero,
+body:has(.about-layout) .page-header .hero {
+  padding-bottom: clamp(8px, 1.6vw, 18px) !important;
+}
+
+body:has(.race-page) .page-header,
+body:has(.about-layout) .page-header {
+  padding-bottom: clamp(12px, 2vw, 26px) !important;
+}

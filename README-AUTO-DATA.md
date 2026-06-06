@@ -754,3 +754,16 @@ Fix:
 - Made the March start date apply only to the generic ballot trend chart.
 - Trump approval keeps its normal full date range.
 - The chart start month is now controlled per chart config instead of globally.
+
+
+## Version 0.8.22
+
+Changed files:
+- `styles.css`
+- `package.json`
+- `scripts/update-polls.js`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Removed the subtitle line under the hero title on Senate, Governor, and About pages.
+- This removes repeated wording like the sentence under `Senate Races`.
