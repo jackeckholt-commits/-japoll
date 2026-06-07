@@ -1,17 +1,17 @@
 {
-  "updatedAt": "2026-06-05T17:31:29.140Z",
+  "updatedAt": "2026-06-07T15:17:33.446Z",
   "genericBallot": {
     "average": {
       "democrats": 48.1,
-      "republicans": 43.4
+      "republicans": 44
     },
     "sources": [
       {
         "key": "votehub",
         "name": "VoteHub",
         "shortName": "VoteHub",
-        "democrats": 47.9,
-        "republicans": 41.7,
+        "democrats": 47.8,
+        "republicans": 41.8,
         "included": true,
         "url": "https://votehub.com/polls/?poll=generic_ballot_2026",
         "scrapeStatus": "live",
@@ -21,7 +21,7 @@
         "key": "fiftyplusone",
         "name": "FiftyPlusOne",
         "shortName": "FiftyPlusOne",
-        "democrats": 49.2,
+        "democrats": 49.3,
         "republicans": 43.4,
         "included": true,
         "url": "https://fiftyplusone.news/polls/generic-ballot/generic-ballot",
@@ -54,12 +54,12 @@
         "key": "racetowh",
         "name": "Race to WH",
         "shortName": "Race to WH",
-        "democrats": 47.8,
-        "republicans": 41,
+        "democrats": 48.1,
+        "republicans": 41.2,
         "included": true,
         "url": "https://www.racetothewh.com/polls/genericballot",
-        "scrapeStatus": "live",
-        "scrapeNote": "Validated live scrape"
+        "scrapeStatus": "fallback",
+        "scrapeNote": "Live scrape unavailable; using fallback values from manual-overrides.json"
       },
       {
         "key": "nyt",
@@ -85,7 +85,7 @@
         "name": "VoteHub",
         "shortName": "VoteHub",
         "approve": 39.9,
-        "disapprove": 56.9,
+        "disapprove": 56.8,
         "included": true,
         "url": "https://votehub.com/polls/?poll=trump_approval",
         "scrapeStatus": "live",
