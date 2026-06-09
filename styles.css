@@ -6258,3 +6258,120 @@ body:has(.about-layout) .page-header {
 .margin-legend-note::after {
   content: " Very light blue/red means tilt, not toss-up.";
 }
+
+
+/* 0.8.27: Inter Tight font and cleaner map/legend lettering */
+:root {
+  --site-font: "Inter Tight", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+html,
+body,
+button,
+input,
+select,
+textarea,
+svg text {
+  font-family: var(--site-font) !important;
+}
+
+body {
+  font-feature-settings: "kern" 1, "liga" 1;
+  text-rendering: geometricPrecision;
+}
+
+.race-state-label {
+  font-family: var(--site-font) !important;
+  fill: rgba(255, 255, 255, 0.86);
+  font-size: 9.5px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.01em;
+  paint-order: stroke;
+  stroke: rgba(8, 15, 21, 0.72);
+  stroke-width: 2.35px !important;
+  stroke-linejoin: round;
+  dominant-baseline: middle;
+  pointer-events: none;
+}
+
+.race-state-label.is-active {
+  fill: rgba(255, 255, 255, 0.92);
+}
+
+.race-state-label:not(.is-active) {
+  fill: rgba(255, 255, 255, 0.38);
+  font-size: 8.5px !important;
+  stroke-width: 2px !important;
+}
+
+.race-state-label.is-compact {
+  font-size: 7.4px !important;
+  letter-spacing: 0 !important;
+  stroke-width: 1.9px !important;
+}
+
+.race-state-label.is-tiny {
+  font-size: 7px !important;
+  stroke-width: 1.7px !important;
+}
+
+.margin-bar-segment {
+  font-family: var(--site-font) !important;
+  min-width: 34px;
+  padding-inline: 3px;
+}
+
+.margin-bar-segment strong {
+  font-family: var(--site-font) !important;
+  font-size: clamp(1.15rem, 1.65vw, 1.9rem) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+}
+
+.margin-bar-segment span {
+  font-family: var(--site-font) !important;
+  font-size: clamp(0.58rem, 0.72vw, 0.76rem) !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.055em !important;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.margin-control-bar {
+  min-height: 72px;
+}
+
+@media (max-width: 920px) {
+  .race-state-label {
+    font-size: 8.2px !important;
+    stroke-width: 2px !important;
+  }
+
+  .race-state-label.is-compact {
+    font-size: 6.6px !important;
+  }
+
+  .margin-bar-segment span {
+    font-size: 0.58rem !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .race-state-label {
+    font-size: 7.2px !important;
+    stroke-width: 1.8px !important;
+  }
+
+  .race-state-label.is-compact {
+    font-size: 5.8px !important;
+  }
+
+  .margin-bar-segment {
+    min-width: 26px;
+  }
+
+  .margin-bar-segment strong {
+    font-size: 1.05rem !important;
+  }
+}

@@ -10,6 +10,10 @@ const FIPS_TO_POSTAL = {
   "55": "WI", "56": "WY"
 };
 
+const COMPACT_LABEL_STATES = new Set(["CT", "DE", "MD", "MA", "NH", "NJ", "RI", "VT", "DC"]);
+const TINY_LABEL_STATES = new Set(["HI"]);
+
+
 function getRaceClass(race) {
   if (!race || race.active !== true) return "state-no-race";
   if (race.marginCategory && race.marginCategory !== "no-data") return `state-${race.marginCategory}`;
@@ -260,8 +264,13 @@ function renderRaceMap(section, mapData, atlas) {
     .join("text")
     .attr("class", feature => {
       const fips = String(feature.id).padStart(2, "0");
+      const postal = FIPS_TO_POSTAL[fips] || "";
       const race = raceByFips.get(fips);
-      return race && race.active === true ? "race-state-label is-active" : "race-state-label";
+      const classes = ["race-state-label"];
+      if (race && race.active === true) classes.push("is-active");
+      if (COMPACT_LABEL_STATES.has(postal)) classes.push("is-compact");
+      if (TINY_LABEL_STATES.has(postal)) classes.push("is-tiny");
+      return classes.join(" ");
     })
     .attr("x", feature => {
       const centroid = path.centroid(feature);

@@ -833,3 +833,26 @@ Fix:
 - Added `Tilt D` and `Tilt R` as very light blue/red categories.
 - Updated the bottom margin bars to use eight categories instead of a gray toss-up middle.
 - Close states now show as tilt Democratic or tilt Republican, not toss-up.
+
+
+## Version 0.8.27
+
+Changed files:
+- `index.html`
+- `methodology.html`
+- `national-averages.html`
+- `trump-approval.html`
+- `senate.html`
+- `governor.html`
+- `house.html`
+- `js/race-maps.js`
+- `styles.css`
+- `package.json`
+- `scripts/update-polls.js`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Added Inter Tight across the website.
+- Updated map state-label lettering to be smaller, tighter, and cleaner.
+- Added compact label classes for smaller states.
+- Updated margin-bar numbers and labels to use the same font and fit better inside each color segment.
