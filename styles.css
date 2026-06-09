@@ -6193,3 +6193,36 @@ body:has(.race-page) .page-header,
 body:has(.about-layout) .page-header {
   padding-bottom: clamp(12px, 2vw, 26px) !important;
 }
+
+
+/* 0.8.23: governor prediction margin map */
+.state-demSolid { fill: #173f93; }
+.state-demLikely { fill: #537ac8; }
+.state-demLean { fill: #86a9f7; }
+.state-tossup { fill: #a8adb8; }
+.state-repLean { fill: #ff8d9c; }
+.state-repLikely { fill: #ff5363; }
+.state-repSolid { fill: #c51d2c; }
+.race-map-labels { pointer-events: none; }
+.race-state-label { fill: rgba(255,255,255,.72); font-size: 14px; font-weight: 950; paint-order: stroke; stroke: rgba(9,19,27,.58); stroke-width: 3px; stroke-linejoin: round; }
+.race-state-label:not(.is-active) { fill: rgba(255,255,255,.30); font-size: 12px; }
+.margin-control-bar { display:flex; width:100%; min-height:76px; overflow:hidden; border-radius:18px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.035); box-shadow: inset 0 1px 0 rgba(255,255,255,.055), 0 18px 44px rgba(0,0,0,.20); }
+.margin-bar-segment { display:grid; place-items:center; gap:2px; min-width:38px; color:#fff; text-align:center; font-weight:950; text-shadow:0 6px 16px rgba(0,0,0,.22); }
+.margin-bar-segment strong { font-size:clamp(1.35rem,2vw,2.1rem); line-height:1; }
+.margin-bar-segment span { font-size:.78rem; line-height:1; letter-spacing:.04em; text-transform:uppercase; opacity:.92; }
+.margin-dem-solid { background:#173f93; }
+.margin-dem-likely { background:#537ac8; }
+.margin-dem-lean { background:#86a9f7; color:#081522; text-shadow:none; }
+.margin-tossup { background:#a8adb8; color:#081522; text-shadow:none; }
+.margin-rep-lean { background:#ff8d9c; color:#27070b; text-shadow:none; }
+.margin-rep-likely { background:#ff5363; }
+.margin-rep-solid { background:#c51d2c; }
+.prediction-heading p { max-width:920px; margin-left:auto; margin-right:auto; }
+.margin-legend-note { margin:12px 0 28px; color:var(--light-gray); font-weight:850; text-align:center; font-size:.96rem; }
+.candidate-heading { margin-top:22px; margin-bottom:10px; color:var(--white); font-size:1rem; letter-spacing:.08em; text-transform:uppercase; }
+.candidate-waiting { display:grid; gap:6px; padding:14px; border-radius:16px; border:1px solid rgba(159,211,255,.16); background:rgba(159,211,255,.07); color:var(--light-gray); }
+.candidate-waiting strong { color:var(--white); }
+.candidate-list { display:grid; gap:10px; }
+.candidate-link { display:flex; justify-content:space-between; gap:12px; padding:12px 14px; border-radius:14px; border:1px solid rgba(159,211,255,.18); background:rgba(255,255,255,.05); color:var(--white); text-decoration:none; font-weight:900; }
+.candidate-link small { color:var(--light-gray); }
+@media (max-width:760px) { .margin-control-bar { min-height:62px; border-radius:14px; } .margin-bar-segment span { display:none; } .race-state-label { font-size:11px; stroke-width:2.4px; } }

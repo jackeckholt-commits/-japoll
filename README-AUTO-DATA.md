@@ -767,3 +767,22 @@ Changed files:
 Fix:
 - Removed the subtitle line under the hero title on Senate, Governor, and About pages.
 - This removes repeated wording like the sentence under `Senate Races`.
+
+
+## Version 0.8.23
+
+Changed files:
+- `data/races.json`
+- `js/race-maps.js`
+- `styles.css`
+- `package.json`
+- `scripts/update-polls.js`
+- `README-AUTO-DATA.md`
+
+Major update:
+- Added a margin-colored Governor prediction map.
+- Added a seven-category margin bar/legend: strong D, likely D, lean D, toss-up, lean R, likely R, strong R.
+- Governor map colors now use prediction margins.
+- State click panel now explains the predicted margin and candidate status.
+- Candidate section says `Waiting on primary for full results` when nominee data is not available.
+- Added state labels to the map.

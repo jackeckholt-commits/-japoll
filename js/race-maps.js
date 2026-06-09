@@ -12,6 +12,7 @@ const FIPS_TO_POSTAL = {
 
 function getRaceClass(race) {
   if (!race || race.active !== true) return "state-no-race";
+  if (race.marginCategory && race.marginCategory !== "no-data") return `state-${race.marginCategory}`;
   if (race.status === "called" && race.party === "dem") return "state-called-dem";
   if (race.status === "called" && race.party === "rep") return "state-called-rep";
   if (race.status === "leading" && race.party === "dem") return "state-lead-dem";
@@ -22,6 +23,11 @@ function getRaceClass(race) {
 
 function formatRaceStatus(race) {
   if (!race || race.active !== true) return "No active race on this map";
+  if (race.status === "prediction") {
+    if (race.party === "tossup") return "Predicted toss-up";
+    const partyName = race.party === "dem" ? "Democratic" : "Republican";
+    return `${partyName} advantage (${race.marginLabel || "margin pending"})`;
+  }
   if (race.status === "called") return `${race.party === "dem" ? "Democratic" : "Republican"} hold/pickup`;
   if (race.status === "leading") return `${race.party === "dem" ? "Democrats" : "Republicans"} currently leading`;
   if (race.status === "tossup") return "Toss-up";
@@ -29,6 +35,7 @@ function formatRaceStatus(race) {
 }
 
 function renderProjectionBar(container, mapData) {
+  if (renderMarginSummary(container, mapData)) return;
   const control = mapData.control || null;
 
   if (control) {
@@ -90,23 +97,67 @@ function renderProjectionBar(container, mapData) {
   `;
 }
 
+
+function renderCandidateList(race) {
+  const candidates = Array.isArray(race.candidates) ? race.candidates : [];
+  if (!candidates.length) {
+    return `
+      <div class="candidate-waiting">
+        <strong>Waiting on primary for full results.</strong>
+        <span>Candidate names and Wikipedia links will be added once nominees are selected.</span>
+      </div>
+    `;
+  }
+  return `
+    <div class="candidate-list">
+      ${candidates.map(candidate => `
+        <a class="candidate-link" href="${candidate.wikipedia || "#"}" target="_blank" rel="noopener noreferrer">
+          <span>${candidate.name}</span>
+          <small>${candidate.party || ""}</small>
+        </a>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderMarginSummary(container, mapData) {
+  const summary = mapData.marginSummary;
+  if (!summary || !Array.isArray(summary.segments)) return false;
+  const total = Number(summary.total || summary.segments.reduce((sum, segment) => sum + Number(segment.count || 0), 0) || 1);
+  const segments = summary.segments.map(segment => {
+    const count = Number(segment.count || 0);
+    if (count <= 0) return "";
+    const width = Math.max((count / total) * 100, 3);
+    return `<div class="margin-bar-segment ${segment.className || ""}" style="width:${width}%"><strong>${count}</strong><span>${segment.label || ""}</span></div>`;
+  }).join("");
+  container.innerHTML = `
+    <div class="race-control-heading prediction-heading">
+      <h3>${summary.title || "Race Prediction"}</h3>
+      <p>${summary.subtitle || ""}</p>
+    </div>
+    <div class="margin-control-bar" aria-label="${summary.title || "Race prediction margin bar"}">${segments}</div>
+    <div class="margin-legend-note">Margins are estimates and should update as polling, ratings, and primary results become available.</div>
+  `;
+  return true;
+}
+
 function renderRaceDetail(panel, race, mapData) {
   if (!race) {
     panel.innerHTML = `
       <h3>Select a state</h3>
-      <p>Clickable states are active races. They are gray until polling, ratings, or forecast data is added.</p>
+      <p>Clickable states show prediction margins and candidate status. Candidate names will be added after primaries.</p>
     `;
     return;
   }
-
+  const marginLine = race.status === "prediction" ? `<p><strong>Prediction margin:</strong> ${race.marginLabel || "Pending"}</p>` : "";
   panel.innerHTML = `
     <span class="detail-kicker">${race.state}</span>
     <h3>${race.label || race.name}</h3>
     <p><strong>Status:</strong> ${formatRaceStatus(race)}</p>
+    ${marginLine}
     <p>${race.note || mapData.subtitle || ""}</p>
-    <div class="detail-actions">
-      <button type="button" class="detail-button" disabled>State page coming later</button>
-    </div>
+    <h4 class="candidate-heading">Candidates</h4>
+    ${renderCandidateList(race)}
   `;
 }
 
@@ -202,6 +253,28 @@ function renderRaceMap(section, mapData, atlas) {
       const postal = FIPS_TO_POSTAL[fips] || fips;
       return race ? `${race.name}: ${formatRaceStatus(race)}` : `${postal}: no active race`;
     });
+
+  svg.append("g")
+    .attr("class", "race-map-labels")
+    .selectAll("text")
+    .data(stateFeatures)
+    .join("text")
+    .attr("class", feature => {
+      const fips = String(feature.id).padStart(2, "0");
+      const race = raceByFips.get(fips);
+      return race && race.active === true ? "race-state-label is-active" : "race-state-label";
+    })
+    .attr("x", feature => {
+      const centroid = path.centroid(feature);
+      return Number.isFinite(centroid[0]) ? centroid[0] : -999;
+    })
+    .attr("y", feature => {
+      const centroid = path.centroid(feature);
+      return Number.isFinite(centroid[1]) ? centroid[1] : -999;
+    })
+    .attr("text-anchor", "middle")
+    .attr("dominant-baseline", "middle")
+    .text(feature => FIPS_TO_POSTAL[String(feature.id).padStart(2, "0")] || "");
 }
 
 async function initializeRaceMaps() {
