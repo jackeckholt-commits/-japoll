@@ -786,3 +786,18 @@ Major update:
 - State click panel now explains the predicted margin and candidate status.
 - Candidate section says `Waiting on primary for full results` when nominee data is not available.
 - Added state labels to the map.
+
+
+## Version 0.8.24
+
+Changed files:
+- `data/races.json`
+- `package.json`
+- `scripts/update-polls.js`
+- `README-AUTO-DATA.md`
+
+Major update:
+- Converted the Senate map to the same margin-based prediction style as the Governor map.
+- Added seven Senate margin categories: strong D, likely D, lean D, toss-up, lean R, likely R, strong R.
+- Senate state click panels now use the prediction/candidate placeholder flow already used on the Governor page.
+- Senate page now explains that margins are predictions based on current available data.
