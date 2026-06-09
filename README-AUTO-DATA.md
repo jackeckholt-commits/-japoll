@@ -870,3 +870,19 @@ Fix:
 - Made the state abbreviation labels on the Senate/Governor maps slightly larger.
 - Made the margin-bar numbers and category labels larger.
 - Kept smaller responsive label sizes for compact states and mobile screens so text still fits.
+
+
+## Version 0.8.29
+
+Changed files:
+- `data/races.json`
+- `js/race-maps.js`
+- `styles.css`
+- `package.json`
+- `scripts/update-polls.js`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Removed the repeated `very light blue/red means tilt, not toss-up` sentence.
+- Removed the extra prediction/candidate note from state click panels.
+- State click panels still show the margin and the candidate waiting message.

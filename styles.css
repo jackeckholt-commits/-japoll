@@ -6475,3 +6475,9 @@ body {
     font-size: 1.15rem !important;
   }
 }
+
+
+/* 0.8.29: remove repeated tilt/toss-up wording */
+.margin-legend-note::after {
+  content: none !important;
+}

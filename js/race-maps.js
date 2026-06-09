@@ -153,12 +153,14 @@ function renderRaceDetail(panel, race, mapData) {
     return;
   }
   const marginLine = race.status === "prediction" ? `<p><strong>Prediction margin:</strong> ${race.marginLabel || "Pending"}</p>` : "";
+  const noteLine = race.note ? `<p>${race.note}</p>` : "";
+
   panel.innerHTML = `
     <span class="detail-kicker">${race.state}</span>
     <h3>${race.label || race.name}</h3>
     <p><strong>Status:</strong> ${formatRaceStatus(race)}</p>
     ${marginLine}
-    <p>${race.note || mapData.subtitle || ""}</p>
+    ${noteLine}
     <h4 class="candidate-heading">Candidates</h4>
     ${renderCandidateList(race)}
   `;
