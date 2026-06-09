@@ -6375,3 +6375,103 @@ body {
     font-size: 1.05rem !important;
   }
 }
+
+
+/* 0.8.28: larger readable map and margin-bar labels */
+.race-state-label {
+  font-size: 11px !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.005em !important;
+  stroke-width: 2.55px !important;
+}
+
+.race-state-label:not(.is-active) {
+  font-size: 9.4px !important;
+  stroke-width: 2.15px !important;
+}
+
+.race-state-label.is-compact {
+  font-size: 8.4px !important;
+  stroke-width: 2.05px !important;
+}
+
+.race-state-label.is-tiny {
+  font-size: 7.8px !important;
+  stroke-width: 1.85px !important;
+}
+
+.margin-control-bar {
+  min-height: 82px !important;
+}
+
+.margin-bar-segment {
+  min-width: 42px !important;
+  padding-inline: 5px !important;
+}
+
+.margin-bar-segment strong {
+  font-size: clamp(1.45rem, 2vw, 2.25rem) !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.055em !important;
+}
+
+.margin-bar-segment span {
+  font-size: clamp(0.68rem, 0.86vw, 0.88rem) !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.035em !important;
+}
+
+@media (max-width: 920px) {
+  .race-state-label {
+    font-size: 9.6px !important;
+    stroke-width: 2.25px !important;
+  }
+
+  .race-state-label:not(.is-active) {
+    font-size: 8.3px !important;
+  }
+
+  .race-state-label.is-compact {
+    font-size: 7.2px !important;
+  }
+
+  .margin-bar-segment {
+    min-width: 34px !important;
+    padding-inline: 3px !important;
+  }
+
+  .margin-bar-segment strong {
+    font-size: 1.34rem !important;
+  }
+
+  .margin-bar-segment span {
+    font-size: 0.66rem !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .race-state-label {
+    font-size: 8.3px !important;
+    stroke-width: 2px !important;
+  }
+
+  .race-state-label:not(.is-active) {
+    font-size: 7.2px !important;
+  }
+
+  .race-state-label.is-compact {
+    font-size: 6.3px !important;
+  }
+
+  .margin-control-bar {
+    min-height: 68px !important;
+  }
+
+  .margin-bar-segment {
+    min-width: 28px !important;
+  }
+
+  .margin-bar-segment strong {
+    font-size: 1.15rem !important;
+  }
+}

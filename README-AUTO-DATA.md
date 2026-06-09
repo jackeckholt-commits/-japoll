@@ -856,3 +856,17 @@ Fix:
 - Updated map state-label lettering to be smaller, tighter, and cleaner.
 - Added compact label classes for smaller states.
 - Updated margin-bar numbers and labels to use the same font and fit better inside each color segment.
+
+
+## Version 0.8.28
+
+Changed files:
+- `styles.css`
+- `package.json`
+- `scripts/update-polls.js`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Made the state abbreviation labels on the Senate/Governor maps slightly larger.
+- Made the margin-bar numbers and category labels larger.
+- Kept smaller responsive label sizes for compact states and mobile screens so text still fits.
