@@ -6226,3 +6226,35 @@ body:has(.about-layout) .page-header {
 .candidate-link { display:flex; justify-content:space-between; gap:12px; padding:12px 14px; border-radius:14px; border:1px solid rgba(159,211,255,.18); background:rgba(255,255,255,.05); color:var(--white); text-decoration:none; font-weight:900; }
 .candidate-link small { color:var(--light-gray); }
 @media (max-width:760px) { .margin-control-bar { min-height:62px; border-radius:14px; } .margin-bar-segment span { display:none; } .race-state-label { font-size:11px; stroke-width:2.4px; } }
+
+
+/* 0.8.26: tilt categories replace toss-ups on Senate/Governor maps */
+.state-demTilt,
+.state-dem-tilt {
+  fill: #c8d8ff;
+}
+
+.state-repTilt,
+.state-rep-tilt {
+  fill: #ffc3cb;
+}
+
+.margin-dem-tilt {
+  background: #c8d8ff;
+  color: #081522;
+  text-shadow: none;
+}
+
+.margin-rep-tilt {
+  background: #ffc3cb;
+  color: #27070b;
+  text-shadow: none;
+}
+
+.margin-tossup {
+  display: none !important;
+}
+
+.margin-legend-note::after {
+  content: " Very light blue/red means tilt, not toss-up.";
+}

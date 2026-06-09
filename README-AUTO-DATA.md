@@ -816,3 +816,20 @@ Fix:
 - Senate changes include moving Maine to toss-up, Georgia to likely Democratic, and Louisiana/Nebraska/South Dakota to likely Republican.
 - Governor changes include moving Nevada to toss-up, Wisconsin to lean Democratic, Minnesota to solid Democratic, and Alaska to lean Republican.
 - These are still prediction placeholders based on the current map design and can be tuned as more real race data is added.
+
+
+## Version 0.8.26
+
+Changed files:
+- `data/races.json`
+- `js/race-maps.js`
+- `styles.css`
+- `package.json`
+- `scripts/update-polls.js`
+- `README-AUTO-DATA.md`
+
+Fix:
+- Removed the toss-up category from the Senate and Governor margin maps.
+- Added `Tilt D` and `Tilt R` as very light blue/red categories.
+- Updated the bottom margin bars to use eight categories instead of a gray toss-up middle.
+- Close states now show as tilt Democratic or tilt Republican, not toss-up.

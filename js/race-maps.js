@@ -24,7 +24,6 @@ function getRaceClass(race) {
 function formatRaceStatus(race) {
   if (!race || race.active !== true) return "No active race on this map";
   if (race.status === "prediction") {
-    if (race.party === "tossup") return "Predicted toss-up";
     const partyName = race.party === "dem" ? "Democratic" : "Republican";
     return `${partyName} advantage (${race.marginLabel || "margin pending"})`;
   }

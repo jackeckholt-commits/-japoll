@@ -1,7 +1,7 @@
 {
   "updatedAt": "2026-06-05T00:00:00.000Z",
-  "version": "0.8.25",
-  "note": "Senate and Governor maps are active with early prediction margin categories. Margins are placeholders based on the reference maps and can be tuned as new data is added.",
+  "version": "0.8.26",
+  "note": "Senate and Governor maps use early prediction margin categories. Close races are tilt D or tilt R; there is no toss-up category in the displayed margin scale.",
   "maps": {
     "senate": {
       "title": "Senate Races",
@@ -11,7 +11,8 @@
         "demSolid": 9,
         "demLikely": 3,
         "demLean": 2,
-        "tossup": 5,
+        "demTilt": 3,
+        "repTilt": 2,
         "repLean": 3,
         "repLikely": 3,
         "repSolid": 10,
@@ -233,14 +234,14 @@
           "fips": "19",
           "name": "Iowa",
           "active": true,
-          "party": "tossup",
+          "party": "rep",
           "status": "prediction",
           "strength": "no-data",
           "label": "Iowa Senate",
           "note": "Prediction based on available data. Candidate names and Wikipedia links will be added after primary results are clear.",
-          "marginCategory": "tossup",
-          "marginLabel": "within 1 point",
-          "predictedMargin": 0,
+          "marginCategory": "repTilt",
+          "marginLabel": "Tilt Republican",
+          "predictedMargin": 0.5,
           "candidates": []
         },
         {
@@ -293,14 +294,14 @@
           "fips": "23",
           "name": "Maine",
           "active": true,
-          "party": "tossup",
+          "party": "dem",
           "status": "prediction",
           "strength": "no-data",
           "label": "Maine Senate",
           "note": "Prediction based on available data. Candidate names and Wikipedia links will be added after primary results are clear.",
-          "marginCategory": "tossup",
-          "marginLabel": "within 1 point",
-          "predictedMargin": 0,
+          "marginCategory": "demTilt",
+          "marginLabel": "Tilt Democratic",
+          "predictedMargin": 0.5,
           "candidates": []
         },
         {
@@ -338,14 +339,14 @@
           "fips": "26",
           "name": "Michigan",
           "active": true,
-          "party": "tossup",
+          "party": "dem",
           "status": "prediction",
           "strength": "no-data",
           "label": "Michigan Senate",
           "note": "Prediction based on available data. Candidate names and Wikipedia links will be added after primary results are clear.",
-          "marginCategory": "tossup",
-          "marginLabel": "within 1 point",
-          "predictedMargin": 0,
+          "marginCategory": "demTilt",
+          "marginLabel": "Tilt Democratic",
+          "predictedMargin": 0.5,
           "candidates": []
         },
         {
@@ -533,14 +534,14 @@
           "fips": "39",
           "name": "Ohio",
           "active": true,
-          "party": "tossup",
+          "party": "dem",
           "status": "prediction",
           "strength": "no-data",
           "label": "Ohio Senate",
           "note": "Prediction based on available data. Candidate names and Wikipedia links will be added after primary results are clear.",
-          "marginCategory": "tossup",
-          "marginLabel": "within 1 point",
-          "predictedMargin": 0,
+          "marginCategory": "demTilt",
+          "marginLabel": "Tilt Democratic",
+          "predictedMargin": 0.5,
           "candidates": []
         },
         {
@@ -653,14 +654,14 @@
           "fips": "48",
           "name": "Texas",
           "active": true,
-          "party": "tossup",
+          "party": "rep",
           "status": "prediction",
           "strength": "no-data",
           "label": "Texas Senate",
           "note": "Prediction based on available data. Candidate names and Wikipedia links will be added after primary results are clear.",
-          "marginCategory": "tossup",
-          "marginLabel": "within 1 point",
-          "predictedMargin": 0,
+          "marginCategory": "repTilt",
+          "marginLabel": "Tilt Republican",
+          "predictedMargin": 0.5,
           "candidates": []
         },
         {
@@ -773,7 +774,7 @@
       "predictionMode": true,
       "marginSummary": {
         "title": "Senate Race Prediction",
-        "subtitle": "Prediction based on available data inputs. Darker colors show larger estimated margins; gray states have no active race on this map.",
+        "subtitle": "Prediction based on available data inputs. Darker colors show larger estimated margins; very light blue/red means tilt, not toss-up.",
         "total": 35,
         "segments": [
           {
@@ -795,10 +796,16 @@
             "className": "margin-dem-lean"
           },
           {
-            "key": "tossup",
-            "label": "Toss-up",
-            "count": 5,
-            "className": "margin-tossup"
+            "key": "demTilt",
+            "label": "Tilt D",
+            "count": 3,
+            "className": "margin-dem-tilt"
+          },
+          {
+            "key": "repTilt",
+            "label": "Tilt R",
+            "count": 2,
+            "className": "margin-rep-tilt"
           },
           {
             "key": "repLean",
@@ -829,7 +836,8 @@
         "demSolid": 12,
         "demLikely": 3,
         "demLean": 3,
-        "tossup": 3,
+        "demTilt": 1,
+        "repTilt": 2,
         "repLean": 3,
         "repLikely": 3,
         "repSolid": 9,
@@ -976,14 +984,14 @@
           "fips": "13",
           "name": "Georgia",
           "active": true,
-          "party": "tossup",
+          "party": "rep",
           "status": "prediction",
           "strength": "no-data",
           "label": "Georgia Governor",
           "note": "Prediction based on available data. Candidate names and Wikipedia links will be added after primary results are clear.",
-          "marginCategory": "tossup",
-          "marginLabel": "within 1 point",
-          "predictedMargin": 0,
+          "marginCategory": "repTilt",
+          "marginLabel": "Tilt Republican",
+          "predictedMargin": 0.5,
           "candidates": []
         },
         {
@@ -1051,14 +1059,14 @@
           "fips": "19",
           "name": "Iowa",
           "active": true,
-          "party": "tossup",
+          "party": "rep",
           "status": "prediction",
           "strength": "no-data",
           "label": "Iowa Governor",
           "note": "Prediction based on available data. Candidate names and Wikipedia links will be added after primary results are clear.",
-          "marginCategory": "tossup",
-          "marginLabel": "within 1 point",
-          "predictedMargin": 0,
+          "marginCategory": "repTilt",
+          "marginLabel": "Tilt Republican",
+          "predictedMargin": 0.5,
           "candidates": []
         },
         {
@@ -1246,14 +1254,14 @@
           "fips": "32",
           "name": "Nevada",
           "active": true,
-          "party": "tossup",
+          "party": "dem",
           "status": "prediction",
           "strength": "no-data",
           "label": "Nevada Governor",
           "note": "Prediction based on available data. Candidate names and Wikipedia links will be added after primary results are clear.",
-          "marginCategory": "tossup",
-          "marginLabel": "within 1 point",
-          "predictedMargin": 0,
+          "marginCategory": "demTilt",
+          "marginLabel": "Tilt Democratic",
+          "predictedMargin": 0.5,
           "candidates": []
         },
         {
@@ -1591,7 +1599,7 @@
       "predictionMode": true,
       "marginSummary": {
         "title": "Governor Race Prediction",
-        "subtitle": "Prediction based on available data inputs. Darker colors show larger estimated margins; gray states have no active race on this map.",
+        "subtitle": "Prediction based on available data inputs. Darker colors show larger estimated margins; very light blue/red means tilt, not toss-up.",
         "total": 36,
         "segments": [
           {
@@ -1613,10 +1621,16 @@
             "className": "margin-dem-lean"
           },
           {
-            "key": "tossup",
-            "label": "Toss-up",
-            "count": 3,
-            "className": "margin-tossup"
+            "key": "demTilt",
+            "label": "Tilt D",
+            "count": 1,
+            "className": "margin-dem-tilt"
+          },
+          {
+            "key": "repTilt",
+            "label": "Tilt R",
+            "count": 2,
+            "className": "margin-rep-tilt"
           },
           {
             "key": "repLean",
