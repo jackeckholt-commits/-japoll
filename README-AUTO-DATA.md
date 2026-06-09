@@ -904,3 +904,18 @@ Candidate update:
 - Governor updates: Arkansas, Iowa, New Mexico, Ohio, and Texas.
 - Added support for candidates marked as `Independent (Dem-aligned)` when needed in later updates.
 - States without verified nominees still show `Waiting on primary for full results.`
+
+
+## Version 0.8.31
+
+Changed files:
+- `data/races.json`
+- `package.json`
+- `scripts/update-polls.js`
+- `README-AUTO-DATA.md`
+
+Candidate update:
+- Added more Senate candidate names and Wikipedia links where nominees or presumptive nominees are available.
+- Added more Governor candidate names and Wikipedia links where nominees are available.
+- Added an Independent (Dem-aligned) label for Seth Bodnar in Montana Senate, while keeping other independents as regular independent unless clearly aligned.
+- States with unresolved primaries or runoffs remain marked as waiting for final results.
