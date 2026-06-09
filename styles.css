@@ -6493,3 +6493,131 @@ body {
 .candidate-link.is-dem-aligned small {
   color: var(--baby-blue);
 }
+
+
+/* 0.8.32: party-colored candidate boxes with click hint */
+.candidate-link {
+  position: relative;
+  align-items: center;
+  overflow: hidden;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+.candidate-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.candidate-link > * {
+  position: relative;
+  z-index: 1;
+}
+
+.candidate-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.20);
+}
+
+.candidate-main {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.candidate-main strong {
+  color: var(--white);
+  font-size: 1.02rem;
+  line-height: 1.1;
+}
+
+.candidate-main em {
+  color: rgba(255, 255, 255, 0.68);
+  font-style: normal;
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.01em;
+}
+
+.candidate-link small {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: fit-content;
+  padding: 7px 9px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 950;
+  line-height: 1;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.candidate-link.is-democrat {
+  border-color: rgba(77, 163, 255, 0.36);
+  background: rgba(77, 163, 255, 0.08);
+}
+
+.candidate-link.is-democrat::before {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(77, 163, 255, 0.24), transparent 58%),
+    linear-gradient(90deg, rgba(77, 163, 255, 0.12), transparent);
+}
+
+.candidate-link.is-democrat small {
+  color: #9fd3ff;
+  border-color: rgba(77, 163, 255, 0.28);
+  background: rgba(77, 163, 255, 0.12);
+}
+
+.candidate-link.is-republican {
+  border-color: rgba(255, 91, 91, 0.34);
+  background: rgba(255, 91, 91, 0.075);
+}
+
+.candidate-link.is-republican::before {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255, 91, 91, 0.22), transparent 58%),
+    linear-gradient(90deg, rgba(255, 91, 91, 0.11), transparent);
+}
+
+.candidate-link.is-republican small {
+  color: #ffb0b0;
+  border-color: rgba(255, 91, 91, 0.28);
+  background: rgba(255, 91, 91, 0.12);
+}
+
+.candidate-link.is-dem-aligned {
+  border-color: rgba(77, 163, 255, 0.42);
+  background: linear-gradient(135deg, rgba(77, 163, 255, 0.13), rgba(255, 255, 255, 0.045));
+}
+
+.candidate-link.is-dem-aligned small {
+  color: var(--baby-blue);
+  border-color: rgba(77, 163, 255, 0.34);
+  background: rgba(77, 163, 255, 0.13);
+}
+
+.candidate-link.is-independent,
+.candidate-link.is-libertarian {
+  border-color: rgba(255, 255, 255, 0.20);
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.candidate-link.is-independent small,
+.candidate-link.is-libertarian small {
+  color: var(--light-gray);
+}
+
+@media (max-width: 760px) {
+  .candidate-link {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .candidate-link small {
+    width: fit-content;
+  }
+}

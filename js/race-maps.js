@@ -101,6 +101,17 @@ function renderProjectionBar(container, mapData) {
 }
 
 
+
+function getCandidatePartyClass(candidate) {
+  const party = String(candidate.party || "").toLowerCase();
+  if (candidate.demAligned || party.includes("dem-aligned")) return "is-dem-aligned";
+  if (party.includes("democratic")) return "is-democrat";
+  if (party.includes("republican")) return "is-republican";
+  if (party.includes("libertarian")) return "is-libertarian";
+  if (party.includes("independent")) return "is-independent";
+  return "";
+}
+
 function renderCandidateList(race) {
   const candidates = Array.isArray(race.candidates) ? race.candidates : [];
   if (!candidates.length) {
@@ -114,8 +125,11 @@ function renderCandidateList(race) {
   return `
     <div class="candidate-list">
       ${candidates.map(candidate => `
-        <a class="candidate-link${candidate.demAligned ? " is-dem-aligned" : ""}" href="${candidate.wikipedia || "#"}" target="_blank" rel="noopener noreferrer">
-          <span>${candidate.name}</span>
+        <a class="candidate-link ${getCandidatePartyClass(candidate)}" href="${candidate.wikipedia || "#"}" target="_blank" rel="noopener noreferrer">
+          <span class="candidate-main">
+            <strong>${candidate.name}</strong>
+            <em>Click to see more</em>
+          </span>
           <small>${candidate.party || ""}</small>
         </a>
       `).join("")}

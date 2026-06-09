@@ -919,3 +919,18 @@ Candidate update:
 - Added more Governor candidate names and Wikipedia links where nominees are available.
 - Added an Independent (Dem-aligned) label for Seth Bodnar in Montana Senate, while keeping other independents as regular independent unless clearly aligned.
 - States with unresolved primaries or runoffs remain marked as waiting for final results.
+
+
+## Version 0.8.32
+
+Changed files:
+- `js/race-maps.js`
+- `styles.css`
+- `package.json`
+- `scripts/update-polls.js`
+- `README-AUTO-DATA.md`
+
+UI update:
+- Candidate rows now show `Click to see more`.
+- Candidate boxes are colored by party: Democratic blue, Republican red, Independent/Libertarian neutral.
+- Dem-aligned independents get Democratic-aligned styling.
