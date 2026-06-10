@@ -993,3 +993,33 @@ Map fix:
 - Changed Georgia Senate to Tilt D.
 - Changed Ohio Senate to Tilt D.
 - Recalculated the Senate margin bar counts.
+
+
+## Version 0.8.37
+
+Changed files:
+- `data/races.json`
+- `js/race-maps.js`
+- `styles.css`
+- `package.json`
+- `scripts/update-polls.js`
+- `README-AUTO-DATA.md`
+
+UI update:
+- Added a compact `If prediction holds` totals row under the current not-up row.
+- Senate totals shown as 49 Dem/Ind caucus and 51 GOP.
+- Governor totals shown as 24 Dem governors and 26 GOP governors.
+
+
+## Version 0.8.38
+
+Changed files:
+- `js/race-maps.js`
+- `styles.css`
+- `package.json`
+- `scripts/update-polls.js`
+- `README-AUTO-DATA.md`
+
+UI update:
+- Moved the `If prediction holds` totals into the same bar as `Currently not up`.
+- The current not-up totals and final projected totals now display as two sections inside one combined card.

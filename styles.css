@@ -6728,3 +6728,77 @@ body {
     font-size: 0.92rem;
   }
 }
+
+
+/* 0.8.37: compact prediction totals row */
+.prediction-total-row {
+  border-color: rgba(159, 211, 255, 0.20);
+  background:
+    linear-gradient(135deg, rgba(77, 163, 255, 0.09), rgba(255, 91, 91, 0.075)),
+    rgba(255, 255, 255, 0.045);
+}
+
+.prediction-total-row span {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+
+/* 0.8.38: put prediction totals inside the currently-not-up bar */
+.race-context-combined-row {
+  grid-template-columns: 1fr 1fr !important;
+  align-items: stretch !important;
+  gap: 12px !important;
+}
+
+.context-section {
+  display: grid;
+  align-content: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.context-section > span {
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 0.83rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.context-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.prediction-total-section {
+  padding-left: 14px;
+  border-left: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.prediction-total-section > span {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+@media (max-width: 900px) {
+  .race-context-combined-row {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+    justify-items: stretch !important;
+  }
+
+  .context-section {
+    justify-items: center;
+  }
+
+  .context-pills {
+    justify-content: center;
+  }
+
+  .prediction-total-section {
+    padding-left: 0;
+    padding-top: 12px;
+    border-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.13);
+  }
+}

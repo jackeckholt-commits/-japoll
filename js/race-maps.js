@@ -140,9 +140,9 @@ function renderCandidateList(race) {
 
 function renderProjectedControl(summary) {
   const notUp = summary.notUpSeats || null;
-  const projected = null;
+  const totals = summary.predictionTotals || null;
 
-  if (!notUp && !projected && !summary.contextNote) {
+  if (!notUp && !totals && !summary.contextNote) {
     return "";
   }
 
@@ -150,13 +150,31 @@ function renderProjectedControl(summary) {
     <div class="race-projection-context">
       ${summary.contextNote ? `<p class="race-context-note">${summary.contextNote}</p>` : ""}
       ${notUp ? `
-        <div class="race-context-row">
-          <span>Currently not up</span>
-          <strong class="context-dem">${notUp.leftCount} ${notUp.leftLabel}</strong>
-          <strong class="context-rep">${notUp.rightCount} ${notUp.rightLabel}</strong>
+        <div class="race-context-row race-context-combined-row">
+          <div class="context-section">
+            <span>Currently not up</span>
+            <div class="context-pills">
+              <strong class="context-dem">${notUp.leftCount} ${notUp.leftLabel}</strong>
+              <strong class="context-rep">${notUp.rightCount} ${notUp.rightLabel}</strong>
+            </div>
+          </div>
+          ${totals ? `
+            <div class="context-section prediction-total-section">
+              <span>${totals.label || "If prediction holds"}</span>
+              <div class="context-pills">
+                <strong class="context-dem">${totals.leftCount} ${totals.leftLabel}</strong>
+                <strong class="context-rep">${totals.rightCount} ${totals.rightLabel}</strong>
+              </div>
+            </div>
+          ` : ""}
+        </div>
+      ` : totals ? `
+        <div class="race-context-row prediction-total-row">
+          <span>${totals.label || "If prediction holds"}</span>
+          <strong class="context-dem">${totals.leftCount} ${totals.leftLabel}</strong>
+          <strong class="context-rep">${totals.rightCount} ${totals.rightLabel}</strong>
         </div>
       ` : ""}
-
     </div>
   `;
 }
