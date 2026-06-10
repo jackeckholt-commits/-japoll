@@ -979,3 +979,17 @@ Changed files:
 Fix:
 - Removed the `If this prediction is correct` projection box from the Senate/Governor race pages.
 - Kept the not-up-for-election context.
+
+
+## Version 0.8.36
+
+Changed files:
+- `data/races.json`
+- `package.json`
+- `scripts/update-polls.js`
+- `README-AUTO-DATA.md`
+
+Map fix:
+- Changed Georgia Senate to Tilt D.
+- Changed Ohio Senate to Tilt D.
+- Recalculated the Senate margin bar counts.

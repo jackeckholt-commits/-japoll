@@ -1,6 +1,6 @@
 {
   "updatedAt": "2026-06-05T00:00:00.000Z",
-  "version": "0.8.35",
+  "version": "0.8.36",
   "note": "Senate and Governor maps include early prediction margins. Candidate arrays are populated for races with verified nominees or presumptive nominees where available; additional states can be updated later.",
   "maps": {
     "senate": {
@@ -9,9 +9,9 @@
       "totalLabel": "35 Senate races",
       "projection": {
         "demSolid": 9,
-        "demLikely": 3,
+        "demLikely": 2,
         "demLean": 2,
-        "demTilt": 3,
+        "demTilt": 4,
         "repTilt": 2,
         "repLean": 3,
         "repLikely": 3,
@@ -181,9 +181,9 @@
           "strength": "no-data",
           "label": "Georgia Senate",
           "note": "",
-          "marginCategory": "demLikely",
-          "marginLabel": "D+5 to D+15",
-          "predictedMargin": 8,
+          "marginCategory": "demTilt",
+          "marginLabel": "Tilt Democratic",
+          "predictedMargin": 0.5,
           "candidates": [
             {
               "name": "Jon Ossoff",
@@ -1044,7 +1044,7 @@
           {
             "key": "demLikely",
             "label": "D+5",
-            "count": 3,
+            "count": 2,
             "className": "margin-dem-likely"
           },
           {
@@ -1056,7 +1056,7 @@
           {
             "key": "demTilt",
             "label": "Tilt D",
-            "count": 3,
+            "count": 4,
             "className": "margin-dem-tilt"
           },
           {
